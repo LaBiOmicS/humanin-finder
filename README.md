@@ -1,4 +1,4 @@
-# HumaninFinder v1.0.5 🧬🤖
+# HumaninFinder v1.0.6 🧬🤖
 
 <p align="center">
   <img src="logo.png" alt="HumaninFinder Logo" width="70%">
