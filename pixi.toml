@@ -33,8 +33,6 @@ ruff = "*"
 default = ["dev"]
 
 [tasks]
-# Run the tool directly
-run = "humanin-finder"
 # Setup environment
 setup = "pip install -e ."
 # Run tests
