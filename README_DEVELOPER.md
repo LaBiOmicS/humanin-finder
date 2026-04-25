@@ -1,46 +1,46 @@
 # HumaninFinder: Developer & Maintenance Guide
 
-Este guia detalha os processos de automação e padrões de desenvolvimento do projeto **HumaninFinder**.
+This guide details the automation processes and development standards for the **HumaninFinder** project.
 
-## 🚀 Fluxo de Trabalho de Publicação (CD)
+## 🚀 Publication Workflow (Continuous Deployment)
 
-O projeto utiliza **Continuous Deployment** através do GitHub Actions para manter o PyPI sempre atualizado.
+The project uses **Continuous Deployment (CD)** via GitHub Actions to keep PyPI always up to date with the latest stable version.
 
-### Mudanças Menores (Documentação)
-*   **O que são:** Mudanças no `README.md`, arquivos na pasta `paper/`, `docs/`, ou comentários.
-*   **Procedimento:** Realize o commit e push normalmente.
-*   **Impacto:** O GitHub Actions **não** tentará publicar no PyPI. O número da versão no `pyproject.toml` pode permanecer o mesmo.
+### Minor Changes (Documentation)
+*   **Definition:** Updates to `README.md`, files in the `paper/` or `docs/` folders, or code comments.
+*   **Procedure:** Commit and push normally.
+*   **Impact:** GitHub Actions **will not** attempt to publish to PyPI. The version number in `pyproject.toml` can remain the same.
 
-### Mudanças Maiores (Ferramenta/Código)
-*   **O que são:** Qualquer alteração em `src/`, novas dependências ou mudanças na lógica biológica.
-*   **Procedimento:**
-    1.  Realize as alterações no código.
-    2.  **Obrigatório:** Aumente o número da versão no arquivo `pyproject.toml` (ex: `1.0.0` -> `1.0.1`).
-    3.  Realize o push para a branch `main`.
-*   **Impacto:** O GitHub Actions detectará a mudança, fará o build do pacote e publicará automaticamente a nova versão no PyPI.
+### Major Changes (Tool/Source Code)
+*   **Definition:** Any alteration to files within `src/`, new dependencies, or changes to biological logic.
+*   **Procedure:**
+    1.  Apply changes to the source code.
+    2.  **Mandatory:** Increment the version number in `pyproject.toml` (e.g., `1.0.0` -> `1.0.1`).
+    3.  Push to the `main` branch.
+*   **Impact:** GitHub Actions will detect the change, build the distribution package, and automatically publish the new version to PyPI.
 
-> **Nota:** Se você realizar uma mudança no código mas esquecer de aumentar a versão, a Action de publicação falhará silenciosamente (skip) para evitar colisões no PyPI.
+> **Note:** If you push changes to the source code but forget to increment the version, the publication Action will skip the upload to prevent version collisions on PyPI.
 
 ---
 
-## 🛠️ Manutenção de Ambientes
+## 🛠️ Environment Maintenance
 
-### Sincronização
-Mantenha sempre os arquivos de ambiente sincronizados quando adicionar uma nova dependência:
-1.  `pyproject.toml`: Dependências para instalação via `pip`.
-2.  `environment.yml`: Dependências para usuários de Conda/Mamba.
-3.  `pixi.toml`: Configurações para desenvolvimento moderno com Pixi.
+### Synchronization
+Always keep the environment configuration files synchronized when adding new dependencies:
+1.  `pyproject.toml`: Core dependencies for `pip` installation.
+2.  `environment.yml`: Recommended for Conda/Mamba users.
+3.  `pixi.toml`: Modern development setup using Pixi.
 
-### Testes
-Sempre execute os testes antes de realizar um push de mudança maior:
+### Testing
+Always run the test suite before pushing any major changes:
 ```bash
 pytest tests/
 ```
 
 ---
 
-## 📖 Badges e Documentação
-Os badges no `README.md` são sincronizados com os workflows do repositório oficial em `https://github.com/LaBiOmicS/humanin-finder`. Ao trocar de repositório, certifique-se de atualizar os links das imagens no README.
+## 📖 Badges and Repository Links
+The badges in `README.md` are linked to the official repository at `https://github.com/LaBiOmicS/humanin-finder`. If the repository is moved, ensure these image links are updated accordingly.
 
 ---
-**Laboratório de Bioinformática e Ômicas (LaBiOmicS) - UMC**
+**Bioinformatics and Omics Laboratory (LaBiOmicS) - UMC**
