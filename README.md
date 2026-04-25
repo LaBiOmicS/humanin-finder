@@ -2,7 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Journal: JOSS](https://img.shields.io/badge/Journal-JOSS-blue.svg)](./paper/joss/paper.md)
+[![CI](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/ci.yml/badge.svg)](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/ci.yml)
+[![JOSS](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/paper.yml/badge.svg)](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/paper.yml)
+[![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)](#)
 
 **HumaninFinder** is an easy-to-use bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs). It uses a Hybrid AI approach, combining deep learning (ESM-2) with biophysical properties to find peptides even in highly diverged or degenerated genomic regions.
 
@@ -64,13 +66,6 @@ If you choose to install via `pip`, you must have **HMMER3** installed on your s
 
 1. `[output]_results.csv`: A professional table with coordinates, classifications, and confidence scores.
 2. `[output]_results.fasta`: The identified peptide sequences for downstream analysis.
-
----
-
-## 🎓 Citation
-
-If you use this tool, please cite:
-> Menegidio, F.B. (2026). **HumaninFinder: A Hybrid AI Engine for the Evolutionary Discovery of Humanin-like Peptides.** Journal of Open Source Software.
 
 ---
 Developed by **LaBiOmicS, UMC, Brazil**.
