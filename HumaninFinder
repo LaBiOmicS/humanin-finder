@@ -9,4 +9,6 @@ sys.path.append(os.path.join(project_root, 'src'))
 from humaninfinder.cli import main
 
 if __name__ == "__main__":
+    # If no subcommand is provided, default to predict (optional, but standard in Click is to show help)
+    # To mimic metaLncRNA, we keep it as a group
     main()

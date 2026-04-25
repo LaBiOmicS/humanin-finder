@@ -12,13 +12,13 @@ COMBINED_FASTA="study/primate_evolution/all_primates_combined.fasta"
 cat ${GENOMES_DIR}/*.fasta > ${COMBINED_FASTA}
 
 echo "[*] Running Standard Analysis (Best Candidates Only)..."
-${PYTHON_BIN} src/humaninfinder/cli.py \
+${PYTHON_BIN} src/humaninfinder/cli.py predict \
     --input ${COMBINED_FASTA} \
     --output ${PAPER_DIR}/full_primate_study \
     --hmm --rescue --threshold 0.7
 
 echo "[*] Running Complete Analysis (All Candidates)..."
-${PYTHON_BIN} src/humaninfinder/cli.py \
+${PYTHON_BIN} src/humaninfinder/cli.py predict \
     --input ${COMBINED_FASTA} \
     --output ${PAPER_DIR}/full_primate_study_all \
     --hmm --rescue --all-candidates

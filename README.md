@@ -1,30 +1,20 @@
 # HumaninFinder v1.0.0
 
-<!-- Institutional Badges -->
-[![University: UMC](https://img.shields.io/badge/University-UMC-0D47A1.svg)](https://www.umc.br/)
-[![Laboratory: LaBiOmicS](https://img.shields.io/badge/Laboratory-LaBiOmicS-7B1FA2.svg)](https://github.com/LaBiOmicS)
-[![Bioinformatics: Humanin](https://img.shields.io/badge/Bioinformatics-Humanin-brightgreen.svg)](https://github.com/LaBiOmicS/humanin-finder)
-
-
-<!-- Open Science Badges -->
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![PyPI Version](https://img.shields.io/pypi/v/metalncrna.svg)](https://pypi.org/project/humanin-finder/)
-[![Open Source](https://img.shields.io/badge/Open-Source-brightgreen.svg)](https://github.com/LaBiOmicS/humanin-finder)
-[![Open Science](https://img.shields.io/badge/Open-Science-blue.svg)](https://github.com/LaBiOmicS/humanin-finder)
-[![Open Data](https://img.shields.io/badge/Open-Data-brightgreen.svg)](https://github.com/LaBiOmicS/humanin-finder)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![JOSS Status](https://img.shields.io/badge/JOSS-Pre--submission-brightgreen.svg)](https://joss.theoj.org/)
-[![CI Status](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/ci.yml/badge.svg)](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Bioinformatics: Humanin](https://img.shields.io/badge/Bioinformatics-Humanin-brightgreen.svg)](https://github.com/LaBiOmicS/humanin-finder)
+[![CI](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/ci.yml/badge.svg)](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/ci.yml)
+[![JOSS](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/paper.yml/badge.svg)](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/paper.yml)
+[![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)](#)
 
-
-**HumaninFinder** is an easy-to-use bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs). It uses a Hybrid AI approach, combining deep learning (ESM-2) with biophysical properties to find peptides even in highly diverged or degenerated genomic regions.
+**HumaninFinder** is a professional bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs). It uses a Hybrid AI approach, combining deep learning (ESM-2) with biophysical properties to find peptides even in highly diverged or degenerated genomic regions.
 
 ---
 
 ## 🚀 Quick Start
 
 ### 1. Installation
-The easiest way to install is using **Conda** or **Mamba**, which handles all dependencies for you:
+The recommended way to install is using **Conda** or **Mamba**:
 
 ```bash
 # Clone the repository
@@ -40,28 +30,30 @@ mamba activate humanin_env
 To scan a mitochondrial genome and find the best Humanin candidate:
 
 ```bash
-humanin-finder --input genome.fasta --output results --hmm --rescue
+humanin-finder predict --input genome.fasta --output results --hmm --rescue
 ```
 
 ---
 
 ## 🌟 Key Features
 
+- **Subcommand-based CLI:** Modular interface for prediction and future tools.
 - **Intuitive Discovery:** Automatically localizes the 16S rRNA gene and scans for peptides.
 - **Evolutionary Rescue:** Detects non-canonical starts and pseudogenic relics.
 - **Smart Filtering:** Automatically removes redundant technical artifacts.
-- **Organism Agnostic:** Works with any species and all NCBI genetic codes.
 
 ---
 
-## 📖 Main Options
+## 📖 Prediction Options
 
-- `--input`: Path to your FASTA file.
-- `--output`: Prefix for the output files.
+Use `humanin-finder predict --help` to see all options:
+
+- `--input, -i`: Path to your FASTA file.
+- `--output, -o`: Prefix for the output files.
 - `--hmm`: (Recommended) Uses HMMER3 to improve localization accuracy.
 - `--rescue`: (Recommended) Enables high-sensitivity scan for divergent peptides.
 - `--all-candidates`: Generates a complete non-redundant list of all detected signals.
-- `--table`: NCBI Genetic Table (Default: 2 - Vertebrate Mitochondrial).
+- `--table, -g`: NCBI Genetic Table (Default: 2 - Vertebrate Mitochondrial).
 
 ---
 
