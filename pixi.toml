@@ -33,9 +33,15 @@ ruff = "*"
 default = ["dev"]
 
 [tasks]
+# Run the tool directly
+run = "humanin-finder"
+# Setup environment
 setup = "pip install -e ."
+# Run tests
 test = "pytest tests/"
+# Build package for PyPI
 build-pkg = "python -m build"
+# Check package integrity
 check-pkg = "twine check dist/*"
-install = "pip install ."
+# Generate study hashes
 generate-hashes = "sha256sum paper/joss/paper.md paper/primate_study/*.csv > checksums.txt"
