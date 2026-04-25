@@ -1,0 +1,76 @@
+# HumaninFinder v1.0.0
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Journal: JOSS](https://img.shields.io/badge/Journal-JOSS-blue.svg)](./paper/joss/paper.md)
+
+**HumaninFinder** is an easy-to-use bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs). It uses a Hybrid AI approach, combining deep learning (ESM-2) with biophysical properties to find peptides even in highly diverged or degenerated genomic regions.
+
+---
+
+## 🚀 Quick Start
+
+### 1. Installation
+The easiest way to install is using **Conda** or **Mamba**, which handles all dependencies for you:
+
+```bash
+# Clone the repository
+git clone https://github.com/LaBiOmicS/humanin-finder
+cd humanin-finder
+
+# Create and activate the environment
+mamba env create -f environment.yml
+mamba activate humanin_env
+```
+
+### 2. Basic Usage
+To scan a mitochondrial genome and find the best Humanin candidate:
+
+```bash
+humanin-finder --input genome.fasta --output results --hmm --rescue
+```
+
+---
+
+## 🌟 Key Features
+
+- **Intuitive Discovery:** Automatically localizes the 16S rRNA gene and scans for peptides.
+- **Evolutionary Rescue:** Detects non-canonical starts and pseudogenic relics.
+- **Smart Filtering:** Automatically removes redundant technical artifacts.
+- **Organism Agnostic:** Works with any species and all NCBI genetic codes.
+
+---
+
+## 📖 Main Options
+
+- `--input`: Path to your FASTA file.
+- `--output`: Prefix for the output files.
+- `--hmm`: (Recommended) Uses HMMER3 to improve localization accuracy.
+- `--rescue`: (Recommended) Enables high-sensitivity scan for divergent peptides.
+- `--all-candidates`: Generates a complete non-redundant list of all detected signals.
+- `--table`: NCBI Genetic Table (Default: 2 - Vertebrate Mitochondrial).
+
+---
+
+## 🛠 Troubleshooting: Prerequisites
+
+If you choose to install via `pip`, you must have **HMMER3** installed on your system:
+- **Ubuntu:** `sudo apt install hmmer`
+- **MacOS:** `brew install hmmer`
+
+---
+
+## 📊 Output Files
+
+1. `[output]_results.csv`: A professional table with coordinates, classifications, and confidence scores.
+2. `[output]_results.fasta`: The identified peptide sequences for downstream analysis.
+
+---
+
+## 🎓 Citation
+
+If you use this tool, please cite:
+> Menegidio, F.B. (2026). **HumaninFinder: A Hybrid AI Engine for the Evolutionary Discovery of Humanin-like Peptides.** Journal of Open Source Software.
+
+---
+Developed by **LaBiOmicS, UMC, Brazil**.

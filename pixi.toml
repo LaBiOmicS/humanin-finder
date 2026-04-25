@@ -1,0 +1,38 @@
+[workspace]
+name = "humaninfinder"
+version = "1.0.0"
+description = "A professional evolutionary discovery tool for Humanin-like peptides."
+authors = ["LaBiOmicS/UMC Team <fabianomenegidio@umc.br>"]
+channels = ["conda-forge", "bioconda", "pytorch"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "3.11.*"
+pytorch = ">=2.0.0"
+pytorch-cuda = "12.1.*"
+transformers = ">=4.30.0"
+biopython = ">=1.80"
+pandas = ">=2.0.0"
+peptides = ">=0.5.0"
+joblib = ">=1.3.0"
+scikit-learn = ">=1.3.0"
+numpy = "*"
+hmmer = ">=3.3"
+pip = "*"
+
+[feature.dev.dependencies]
+pytest = "*"
+pytest-cov = "*"
+build = "*"
+twine = "*"
+
+[environments]
+default = ["dev"]
+
+[tasks]
+setup = "pip install -e ."
+test = "pytest tests/"
+build-pkg = "python -m build"
+check-pkg = "twine check dist/*"
+install = "pip install ."
+generate-hashes = "sha256sum paper/joss/paper.md paper/primate_study/*.csv > checksums.txt"

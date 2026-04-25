@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "humaninfinder"
+version = "1.0.0"
+description = "A professional evolutionary discovery tool for Humanin-like peptides (sORFs) using a Hybrid AI approach."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "LaBiOmicS/UMC Team", email = "fabianomenegidio@umc.br"}
+]
+keywords = ["Humanin", "bioinformatics", "genomics", "sORF", "ESM-2"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+dependencies = [
+    "pandas",
+    "biopython",
+    "torch",
+    "transformers",
+    "peptides",
+    "joblib",
+    "scikit-learn",
+    "numpy"
+]
+
+[project.urls]
+Homepage = "https://github.com/LaBiOmicS/humanin-finder"
+Repository = "https://github.com/LaBiOmicS/humanin-finder"
+"Bug Tracker" = "https://github.com/LaBiOmicS/humanin-finder/issues"
+
+[project.scripts]
+humanin-finder = "humaninfinder.cli:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
