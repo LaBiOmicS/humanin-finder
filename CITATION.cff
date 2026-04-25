@@ -1,20 +1,21 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: Menegidio
-  given-names: Fabiano Bezerra
-  affiliation: LaBiOmicS, University of Mogi das Cruzes (UMC)
-  orcid: https://orcid.org/0000-0002-3112-9023
+  - family-names: Menegidio
+    given-names: Fabiano Bezerra
+    orcid: "https://orcid.org/0000-0002-3112-9023"
+    affiliation: "LaBiOmicS, University of Mogi das Cruzes (UMC)"
 title: "HumaninFinder: A Hybrid AI Engine for the Evolutionary Discovery of Humanin-like Peptides"
 version: 1.0.0
+doi: "pending"
 date-released: 2026-04-25
 url: "https://github.com/LaBiOmicS/humanin-finder"
 repository-code: "https://github.com/LaBiOmicS/humanin-finder"
-abstract: "A professional bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs) using a Hybrid AI approach (ESM-2 + Biophysical analysis)."
 keywords:
   - bioinformatics
   - humanin
-  - deep-learning
-  - mitochondrial-derived-peptides
-  - esm-2
+  - "deep-learning"
+  - "mitochondrial-derived-peptides"
+  - "esm-2"
 license: MIT
+abstract: "A professional bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs) using a Hybrid AI approach (ESM-2 + Biophysical analysis)."
