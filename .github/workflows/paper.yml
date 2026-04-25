@@ -1,0 +1,27 @@
+name: JOSS Paper Check
+
+on:
+  push:
+    paths:
+      - 'paper/joss/paper.md'
+      - 'paper/joss/paper.bib'
+      - 'README.md'
+  pull_request:
+    paths:
+      - 'paper/joss/paper.md'
+      - 'paper/joss/paper.bib'
+
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    name: Paper Draft
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Prepare Paper
+        run: cp paper/joss/paper.md . && cp paper/joss/paper.bib .
+      - name: Build Paper
+        uses: openjournals/openjournals-draft-action@master
+        with:
+          paper_path: paper.md
+          journal: joss
