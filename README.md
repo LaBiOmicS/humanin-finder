@@ -41,6 +41,23 @@ humanin-finder predict --input genome.fasta --output results --hmm --rescue
 - **Intuitive Discovery:** Automatically localizes the 16S rRNA gene and scans for peptides.
 - **Evolutionary Rescue:** Detects non-canonical starts and pseudogenic relics.
 - **Smart Filtering:** Automatically removes redundant technical artifacts.
+- **AI Research Agent:** Chat with your results using local LLMs (Ollama) to get biological insights.
+
+---
+
+## 🤖 AI Agent (Optional)
+
+You can now use an AI agent to interpret your results. This requires [Ollama](https://ollama.com) installed and running.
+
+1. Install the agent dependency:
+   ```bash
+   pip install "humaninfinder[agent]"
+   ```
+
+2. Run the agent on your results:
+   ```bash
+   humanin-finder agent --results results_csv.csv
+   ```
 
 ---
 

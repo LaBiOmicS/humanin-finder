@@ -38,6 +38,22 @@ def main():
     pass
 
 @main.command()
+@click.option("--results", "-r", required=True, type=click.Path(exists=True), help="Path to results CSV file.")
+@click.option("--model", "-m", default="llama3", help="Ollama model to use. Default: llama3.")
+@click.option("--query", "-q", help="Specific question about the results.")
+def agent(results, model, query):
+    """AI-powered interpretation of HumaninFinder results."""
+    from humaninfinder.agent import HumaninAgent
+    ai = HumaninAgent(model=model)
+    response = ai.analyze_results(results, query=query)
+    if response:
+        click.echo("\n" + "="*80)
+        click.echo("AI AGENT INSIGHTS")
+        click.echo("="*80)
+        click.echo(response)
+        click.echo("="*80)
+
+@main.command()
 def setup():
     """Initialize and verify the environment."""
     click.echo("[*] Verifying prerequisites...")

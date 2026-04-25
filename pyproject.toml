@@ -31,6 +31,9 @@ dependencies = [
     "numpy"
 ]
 
+[project.optional-dependencies]
+agent = ["ollama"]
+
 [project.urls]
 Homepage = "https://github.com/LaBiOmicS/humanin-finder"
 Repository = "https://github.com/LaBiOmicS/humanin-finder"
