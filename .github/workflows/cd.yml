@@ -1,0 +1,34 @@
+name: Continuous Deployment (PyPI)
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'paper/**'
+      - 'docs/**'
+      - 'README.md'
+
+jobs:
+  deploy:
+    name: Build and Publish to PyPI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Micromamba
+      uses: mamba-org/setup-micromamba@v2
+      with:
+        environment-file: environment.yml
+        init-shell: bash
+
+    - name: Build Distributions
+      shell: bash -l {0}
+      run: |
+        pip install build
+        python -m build
+
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        skip-existing: true # Crucial: Não falha se a versão já existir
