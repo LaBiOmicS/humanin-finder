@@ -1,0 +1,22 @@
+{
+    "title": "HumaninFinder: A Hybrid AI Engine for the Evolutionary Discovery of Humanin-like Peptides",
+    "description": "A professional bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs) using a Hybrid AI approach (ESM-2 + Biophysical analysis). It features an Evolutionary Rescue mode and an integrated AI Research Agent for expert interpretation.",
+    "creators": [
+        {
+            "name": "Menegidio, Fabiano Bezerra",
+            "affiliation": "LaBiOmicS, University of Mogi das Cruzes (UMC)",
+            "orcid": "0000-0002-3112-9023"
+        }
+    ],
+    "access_right": "open",
+    "license": "mit",
+    "upload_type": "software",
+    "keywords": [
+        "bioinformatics",
+        "humanin",
+        "deep-learning",
+        "mitochondrial-derived-peptides",
+        "esm-2",
+        "aging"
+    ]
+}
