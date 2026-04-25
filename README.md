@@ -1,7 +1,7 @@
 # HumaninFinder v1.0.6 🧬🤖
 
 <p align="center">
-  <img src="logo.png" alt="HumaninFinder Logo" width="70%">
+  <img src="https://raw.githubusercontent.com/LaBiOmicS/humanin-finder/main/logo.png" alt="HumaninFinder Logo" width="70%">
 </p>
 
 <!-- Institutional Badges -->
