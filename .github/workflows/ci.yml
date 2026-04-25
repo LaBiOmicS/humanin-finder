@@ -22,9 +22,7 @@ jobs:
         run: pixi run setup
 
       - name: Run Linting
-        run: |
-          pixi run python -m pip install ruff
-          pixi run ruff check src/
+        run: pixi run ruff check src/
 
       - name: Run Tests
         run: pixi run test
