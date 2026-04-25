@@ -12,7 +12,7 @@ license = {text = "MIT"}
 authors = [
     {name = "LaBiOmicS/UMC Team", email = "fabianomenegidio@umc.br"}
 ]
-keywords = ["Humanin", "bioinformatics", "genomics", "sORF", "ESM-2"]
+keywords = ["Humanin", "bioinformatics", "genomics", "sORF", "ESM-2", "mitochondria", "aging"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",

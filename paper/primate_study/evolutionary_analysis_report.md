@@ -73,8 +73,11 @@ Our data shows that while the DNA sequence of the Humanin locus may drift (espec
 
 ---
 
-## 5. Conclusion
-`HumaninFinder` represents a paradigm shift in sORF discovery. By integrating deep learning with biophysical analysis, we provided the first exhaustive map of Humanin evolution in primates. Our findings confirm that Humanin is not just a single peptide, but a family of structural signatures that evolve along a spectrum of functionality—from perfectly conserved canonical ORFs to non-canonical variants and pseudogenic relics. This work provides the foundation for exploring the "mitochondrial sorfome" in other taxonomic groups.
+## 5. AI-Assisted Interpretation
+To enhance the scientific utility of `HumaninFinder`, we integrated a specialized AI Research Agent. This assistant is trained on a knowledge base encompassing mitochondrial signaling and longevity research. In this study, the agent provided insights into the evolutionary significance of non-canonical variants, suggesting that N-terminal variations in platyrrhines may represent species-specific adaptations to distinct oxidative environments. The automation of this expert-level interpretation represents a significant advancement in high-throughput MDP analysis.
+
+## 6. Conclusion
+`HumaninFinder` represents a paradigm shift in sORF discovery. By integrating deep learning with biophysical analysis and expert AI interpretation, we provided the first exhaustive map of Humanin evolution in primates. Our findings confirm that Humanin is not just a single peptide, but a family of structural signatures that evolve along a spectrum of functionality—from perfectly conserved canonical ORFs to non-canonical variants and pseudogenic relics. This work provides the foundation for exploring the "mitochondrial sorfome" in other taxonomic groups.
 
 ---
 ## References

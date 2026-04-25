@@ -11,7 +11,7 @@ source:
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - humanin-finder = humaninfinder.cli:main
 
@@ -22,13 +22,15 @@ requirements:
     - setuptools >=61.0
   run:
     - python >=3.10
-    - pytorch >=2.0.0
-    - transformers >=4.30.0
-    - biopython >=1.80
-    - pandas >=2.0.0
-    - peptides >=0.5.0
-    - joblib >=1.3.0
-    - scikit-learn >=1.3.0
+    - click
+    - pandas
+    - biopython
+    - pytorch
+    - transformers
+    - peptides
+    - joblib
+    - scikit-learn
+    - numpy
     - hmmer >=3.3
 
 test:
@@ -36,14 +38,11 @@ test:
     - humaninfinder
   commands:
     - humanin-finder --help
+    - humanin-finder setup
 
 about:
-  home: https://github.com/LaBiOmicS/HumaninFinder
+  home: https://github.com/LaBiOmicS/humanin-finder
   license: MIT
   license_file: LICENSE
-  summary: 'A professional evolutionary discovery tool for Humanin-like peptides (sORFs) using a Hybrid AI approach.'
-  dev_url: https://github.com/LaBiOmicS/HumaninFinder
-
-extra:
-  recipe-maintainers:
-    - FabianoMenegidio
+  summary: "A professional evolutionary discovery tool for Humanin-like peptides using a Hybrid AI approach."
+  dev_url: https://github.com/LaBiOmicS/humanin-finder

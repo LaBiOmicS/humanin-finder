@@ -7,7 +7,7 @@
 [![JOSS](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/paper.yml/badge.svg)](https://github.com/LaBiOmicS/humanin-finder/actions/workflows/paper.yml)
 [![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)](#)
 
-**HumaninFinder** is a professional bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs). It uses a Hybrid AI approach, combining deep learning (ESM-2) with biophysical properties to find peptides even in highly diverged or degenerated genomic regions.
+**HumaninFinder** is a professional bioinformatics tool for the discovery and classification of Humanin-like peptides (sORFs). It uses a Hybrid AI approach, combining deep learning (ESM-2) with biophysical properties and a specialized **AI Research Agent** to interpret findings in the context of mitochondrial biology and aging.
 
 ---
 
@@ -37,40 +37,36 @@ humanin-finder predict --input genome.fasta --output results --hmm --rescue
 
 ## 🌟 Key Features
 
-- **Subcommand-based CLI:** Modular interface for prediction and future tools.
+- **Subcommand-based CLI:** Modular interface for prediction, setup, and AI interpretation.
 - **Intuitive Discovery:** Automatically localizes the 16S rRNA gene and scans for peptides.
 - **Evolutionary Rescue:** Detects non-canonical starts and pseudogenic relics.
-- **Smart Filtering:** Automatically removes redundant technical artifacts.
-- **AI Research Agent:** Chat with your results using local LLMs (Ollama) to get biological insights.
+- **AI Research Agent:** Chat with your results using a local LLM specialist in Humanin, mitochondria, and aging biology.
 
 ---
 
-## 🤖 AI Agent (Optional)
+## 🤖 AI Research Agent (Optional)
 
-You can now use an AI agent to interpret your results. This requires [Ollama](https://ollama.com) installed and running.
+HumaninFinder includes an integrated AI agent that acts as a specialist in mitochondrial-derived peptides (MDPs). It interprets your CSV results through the lens of longevity and cytoprotection research.
 
-1. Install the agent dependency:
-   ```bash
-   pip install "humaninfinder[agent]"
-   ```
+### Setup Agent:
+Requires [Ollama](https://ollama.com) installed and running.
+```bash
+pip install "humaninfinder[agent]"
+ollama pull llama3
+```
 
-2. Run the agent on your results:
-   ```bash
-   humanin-finder agent --results results_csv.csv
-   ```
+### Run Agent:
+```bash
+humanin-finder agent --results results_csv.csv --query "How does the conservation in this species relate to its lifespan?"
+```
 
 ---
 
-## 📖 Prediction Options
+## 📖 Main Commands
 
-Use `humanin-finder predict --help` to see all options:
-
-- `--input, -i`: Path to your FASTA file.
-- `--output, -o`: Prefix for the output files.
-- `--hmm`: (Recommended) Uses HMMER3 to improve localization accuracy.
-- `--rescue`: (Recommended) Enables high-sensitivity scan for divergent peptides.
-- `--all-candidates`: Generates a complete non-redundant list of all detected signals.
-- `--table, -g`: NCBI Genetic Table (Default: 2 - Vertebrate Mitochondrial).
+- `setup`: Initialize and verify the environment (HMMER3, models).
+- `predict`: Run the discovery pipeline on genomic FASTA files.
+- `agent`: Consult the specialized AI assistant for result interpretation.
 
 ---
 
