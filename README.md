@@ -1,4 +1,4 @@
-# HumaninFinder v1.0.4 🧬🤖
+# HumaninFinder v1.0.5 🧬🤖
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/LaBiOmicS/humanin-finder/main/docs/logo.png" alt="HumaninFinder Logo" width="70%">

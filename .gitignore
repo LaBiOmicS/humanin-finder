@@ -45,5 +45,9 @@ official_study_results.*
 *.faa
 *.fa
 
+# Publication Case Studies
+paper/primate_study/
+study/primate_evolution/
+
 # OS
 .DS_Store

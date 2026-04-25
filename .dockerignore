@@ -1,0 +1,16 @@
+.git
+.gitignore
+.pixi/
+.pytest_cache/
+__pycache__/
+build/
+dist/
+*.egg-info/
+paper/primate_study/
+study/primate_evolution/
+results/
+*.csv
+*.fasta
+*.hmm
+!src/humaninfinder/data/*.fasta
+!src/humaninfinder/data/*.hmm
