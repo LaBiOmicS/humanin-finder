@@ -1,10 +1,9 @@
 import argparse
-import sys
 import os
 import pandas as pd
 import concurrent.futures
 from Bio import SeqIO
-from humaninfinder.core import find_sorfs, sliding_window_rescue, run_hmm_search, find_16s_locus, find_16s_locus_precise
+from humaninfinder.core import find_sorfs, sliding_window_rescue, run_hmm_search, find_16s_locus_precise
 from humaninfinder.classifier import HumaninClassifier
 
 def process_single_record(record, args, hmm_path):
@@ -24,7 +23,6 @@ def process_single_record(record, args, hmm_path):
         hmm_hits = run_hmm_search(targeted_seq, hmm_path, table=args.table)
 
     # 3. Candidate Generation (ONLY in the discovered zone)
-    candidates = []
     # Search standard ORFs in the 16S fragment
     local_candidates = find_sorfs(targeted_seq, table=args.table)
 
@@ -88,9 +86,6 @@ def main():
                 
                 # SCIENTIFIC SCORING V6: Adaptive Thresholding
                 score = prob
-                
-                # In this targeted version, we know we are in the correct locus
-                is_in_locus = True 
                 
                 cand_hit = next((h for h in hmm_hits if h['strand'] == cand['strand'] and h['frame'] == cand['frame']), None)
                 

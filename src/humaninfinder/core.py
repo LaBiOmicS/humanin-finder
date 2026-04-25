@@ -2,9 +2,6 @@ import re
 import subprocess
 import tempfile
 import os
-from Bio.Seq import Seq
-from Bio import SeqIO
-from Bio.Data import CodonTable
 
 def find_sorfs(seq, table=1, min_len=10, max_len=50):
     """
@@ -141,8 +138,10 @@ def run_hmm_search(dna_seq, hmm_path, table=2):
                             'e_value': e_value
                         })
     finally:
-        if os.path.exists(tmp_in_path): os.remove(tmp_in_path)
-        if os.path.exists(tmp_out): os.remove(tmp_out)
+        if os.path.exists(tmp_in_path):
+            os.remove(tmp_in_path)
+        if os.path.exists(tmp_out):
+            os.remove(tmp_out)
         
     return hits
 
@@ -207,8 +206,10 @@ def find_16s_locus_precise(dna_seq, probe_path="16s_probe.fasta"):
     except Exception:
         pass
     finally:
-        if os.path.exists(tmp_in_path): os.remove(tmp_in_path)
-        if os.path.exists(tmp_out): os.remove(tmp_out)
+        if os.path.exists(tmp_in_path):
+            os.remove(tmp_in_path)
+        if os.path.exists(tmp_out):
+            os.remove(tmp_out)
         
     # Fallback if nhmmer fails
     return find_16s_locus(dna_seq)
