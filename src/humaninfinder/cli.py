@@ -36,7 +36,7 @@ def process_single_record(record, table, hmm, rescue, hmm_path):
 
 
 @click.group()
-@click.version_option(version="1.0.0")
+@click.version_option(version="1.0.5")
 def main():
     """HumaninFinder: Discovery tool for Humanin-like peptides using Hybrid AI."""
     pass
