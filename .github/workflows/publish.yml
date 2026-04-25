@@ -11,13 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Setup Pixi
-      uses: prefix-dev/setup-pixi@v0.8.2
+    - name: Setup Micromamba
+      uses: mamba-org/setup-micromamba@v2
       with:
-        cache: false
-        locked: false
+        environment-file: environment.yml
+        init-shell: bash
     - name: Build binary wheel and source tarball
-      run: pixi run build-pkg
+      shell: bash -l {0}
+      run: |
+        pip install build
+        python -m build
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
