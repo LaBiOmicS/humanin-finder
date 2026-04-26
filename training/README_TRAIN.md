@@ -6,7 +6,7 @@ This folder contains the complete pipeline used to create the AI model for `Huma
 - `train_model.py`: The main training script (HMMer + ESM-2 + Biophysics).
 - `datasets/`: 
     - `humanin_pos.fasta`: Curated positive sequences.
-    - `negatives_ref.fasta`: Non-Humanin peptide sequences from Swiss-Prot.
+    - `negatives_frozen.fasta`: Non-Humanin peptide sequences from Swiss-Prot.
 
 ## How to Replicate
 
