@@ -2,7 +2,7 @@
 FROM condaforge/mambaforge:latest
 
 LABEL maintainer="LaBiOmics/UMC Team <fabianomenegidio@umc.br>"
-LABEL version="1.0.8"
+LABEL version="1.0.9"
 LABEL description="HumaninFinder: Professional evolutionary discovery tool (Conda-based Container)."
 
 WORKDIR /app
