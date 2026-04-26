@@ -29,6 +29,12 @@
 
 ---
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/LaBiOmicS/humanin-finder/main/infografico.png" alt="HumaninFinder" width="100%">
+</p>
+
+---
+
 ## 📂 Repository Structure
 
 ```text
