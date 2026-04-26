@@ -1,6 +1,6 @@
 [workspace]
 name = "humaninfinder"
-version = "1.0.7"
+version = "1.0.8"
 description = "A professional evolutionary discovery tool for Humanin-like peptides."
 authors = ["LaBiOmicS/UMC Team <fabianomenegidio@umc.br>"]
 channels = ["conda-forge", "bioconda"]

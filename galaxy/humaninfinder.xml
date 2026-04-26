@@ -1,7 +1,7 @@
-<tool id="humaninfinder" name="HumaninFinder" version="1.0.7" profile="21.01">
-    <description>Discovery tool for Humanin-like peptides using Hybrid AI</description>
+<tool id="humaninfinder" name="HumaninFinder" version="1.0.8" profile="21.01">
+    <description>Discover Humanin-like peptides from metagenomic data</description>
     <requirements>
-        <requirement type="package" version="1.0.7">humaninfinder</requirement>
+        <requirement type="package" version="1.0.8">humaninfinder</requirement>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
         humanin-finder predict
