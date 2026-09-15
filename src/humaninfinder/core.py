@@ -60,27 +60,28 @@ def sliding_window_rescue(seq, table=1, window_size=21, step=3, target_strand=No
             strands = [(-1, seq.reverse_complement())]
 
     for strand, nuc in strands:
-        for i in range(0, len(nuc) - win_bp + 1, step):
-            sub_dna = nuc[i : i + win_bp]
-            pep = str(sub_dna.translate(table=table))
+        for frame in range(3):
+            for i in range(frame, len(nuc) - win_bp + 1, step):
+                sub_dna = nuc[i : i + win_bp]
+                pep = str(sub_dna.translate(table=table))
 
-            # Status classification
-            if "*" in pep:
-                status = "Pseudogenic"
-            elif pep.startswith("M"):
-                status = "Canonical"
-            else:
-                status = "Non-canonical"
+                # Status classification
+                if "*" in pep:
+                    status = "Pseudogenic"
+                elif pep.startswith("M"):
+                    status = "Canonical"
+                else:
+                    status = "Non-canonical"
 
-            if strand == 1:
-                d_start, d_end = i, i + win_bp
-            else:
-                d_end = len(seq) - i
-                d_start = len(seq) - (i + win_bp)
+                if strand == 1:
+                    d_start, d_end = i, i + win_bp
+                else:
+                    d_end = len(seq) - i
+                    d_start = len(seq) - (i + win_bp)
 
-            candidates.append(
-                {"seq": pep, "start": d_start, "end": d_end, "strand": strand, "frame": i % 3, "status": status}
-            )
+                candidates.append(
+                    {"seq": pep, "start": d_start, "end": d_end, "strand": strand, "frame": frame, "status": status}
+                )
     return candidates
 
 
@@ -132,6 +133,8 @@ def run_hmm_search(dna_seq, hmm_path, table=2):
                         strand = int(m.group(1))
                         frame = int(m.group(2))
                         hits.append({"strand": strand, "frame": frame, "score": score, "e_value": e_value})
+    except (subprocess.SubprocessError, FileNotFoundError, OSError):
+        pass
     finally:
         if os.path.exists(tmp_in_path):
             os.remove(tmp_in_path)

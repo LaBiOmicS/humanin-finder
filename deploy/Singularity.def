@@ -3,7 +3,7 @@ From: condaforge/mambaforge:latest
 
 %labels
     Maintainer LaBiOmics/UMC Team <fabianomenegidio@umc.br>
-    Version 1.0.9
+    Version 1.1.0
     Description HumaninFinder: Evolutionary discovery tool (Conda-based Container).
 
 %files
@@ -17,7 +17,8 @@ From: condaforge/mambaforge:latest
     mamba install -y hmmer -c bioconda
     pip install .
     # Bake models
-    humanin-finder --setup
+    python -c "from transformers import AutoTokenizer, EsmModel; AutoTokenizer.from_pretrained('facebook/esm2_t6_8M_UR50D'); EsmModel.from_pretrained('facebook/esm2_t6_8M_UR50D')"
+    humanin-finder setup
 
 %runscript
     exec humanin-finder "$@"

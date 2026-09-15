@@ -1,0 +1,344 @@
+taxon_id	organism	accession	length_bp	gc_content	num_features	is_outgroup
+Lagothrix_lagotricha	Lagothrix lagotricha	NC_021951.1	16595	39.55	51	False
+Cheirogaleus_crossleyi	Cheirogaleus crossleyi	NC_035604.1	16622	38.61	77	False
+Erythrocebus_patas	Erythrocebus patas	NC_021947.1	16676	41.27	51	False
+Microcebus_arnholdi	Microcebus arnholdi	NC_035554.1	16832	35.87	77	False
+Theropithecus_gelada	Theropithecus gelada	NC_019802.1	16546	43.19	77	False
+Piliocolobus_badius	Piliocolobus badius	NC_008219.1	16595	38.84	53	False
+Microcebus_mamiratra	Microcebus mamiratra	NC_035601.1	16735	35.89	77	False
+Saguinus_labiatus_rufiventer	Saguinus labiatus rufiventer	NC_064178.1	16508	38.28	77	False
+Nycticebus_bengalensis	Nycticebus bengalensis	NC_021958.1	16735	40.77	51	False
+Cercocebus_atys	Cercocebus atys	NC_028592.1	16543	41.75	76	False
+Microcebus_sambiranensis	Microcebus sambiranensis	NC_035561.1	16674	35.85	77	False
+Eulemur_macaco_macaco	Eulemur macaco macaco	NC_012771.1	17149	38.87	52	False
+Sapajus_flavius	Sapajus flavius	NC_050883.1	16543	39.13	76	False
+Propithecus_verreauxi	Propithecus verreauxi	NC_028210.1	17106	40.03	76	False
+Macaca_assamensis	Macaca assamensis	NC_023795.1	16542	43.30	54	False
+Lepilemur_seali	Lepilemur seali	NC_034731.1	16771	41.37	77	False
+Leontocebus_fuscicollis_weddelli	Leontocebus fuscicollis weddelli	NC_064177.1	16562	40.65	77	False
+Sapajus_xanthosternos	Sapajus xanthosternos	NC_021961.1	16527	39.24	51	False
+Papio_kindae	Papio kindae	NC_020008.2	16504	43.58	77	False
+Propithecus_deckenii	Propithecus deckenii	NC_065305.1	17099	40.14	75	False
+Cebus_imitator	Cebus imitator	NC_087897.1	16558	38.71	76	False
+Sapajus_apella	Sapajus apella	NC_064184.1	16542	39.07	77	False
+Presbytis_comata_comata	Presbytis comata comata	KY117600.1	16651	37.87	53	False
+Cacajao_calvus_rubicundus	Cacajao calvus rubicundus	NC_064155.1	16765	38.80	77	False
+Rhinopithecus_bieti_2_RL_2012	Rhinopithecus bieti 2 RL-2012	NC_018060.1	16550	38.48	77	False
+Propithecus_candidus	Propithecus candidus	NC_065304.1	17062	39.84	75	False
+Aotus_azarai_azarai	Aotus azarai azarai	NC_018115.1	16585	38.55	81	False
+Mico_humeralifer	Mico humeralifer	NC_064174.1	16563	40.52	77	False
+Macaca_nemestrina	Macaca nemestrina	NC_026976.1	16560	42.82	75	False
+Ateles_chamek	Ateles chamek	NC_064190.1	16537	39.10	76	False
+Avahi_laniger	Avahi laniger	NC_021940.1	16787	42.22	51	False
+Plecturocebus_cinerascens	Plecturocebus cinerascens	NC_064203.1	16555	39.56	77	False
+Hoolock_hoolock	Hoolock hoolock	NC_033885.1	16495	44.40	76	False
+Callithrix_penicillata	Callithrix penicillata	NC_030788.1	16246	40.29	76	False
+Mandrillus_leucophaeus	Mandrillus leucophaeus	NC_028442.1	16547	42.27	77	False
+Indri_indri	Indri indri	NC_026095.1	17098	40.48	51	False
+Rousettus_aegyptiacus	Rousettus aegyptiacus	NC_007393.1	16706	41.91	77	False
+Microcebus_berthae	Microcebus berthae	NC_035629.1	16904	36.36	77	False
+Macaca_mulatta_vestita	Macaca mulatta vestita	NC_037466.1	16565	43.33	78	False
+Nycticebus_coucang	Nycticebus coucang	NC_002765.1	16764	40.75	53	False
+Papio_anubis	Papio anubis	NC_020006.2	16516	43.67	53	False
+Sapajus_libidinosus	Sapajus libidinosus	NC_087899.1	16544	39.13	76	False
+Macaca_mulatta_lasiotus	Macaca mulatta lasiotus	KF830702.1	16561	43.19	76	False
+Phaner_parienti	Phaner parienti	NC_035609.1	16626	38.29	77	False
+Rhinopithecus_bieti	Rhinopithecus bieti	NC_015486.1	16551	38.40	77	False
+Avahi_sp	Avahi sp.	PX582236.1	17003	42.35	51	False
+Procolobus_verus	Procolobus verus	NC_020666.1	16605	39.71	77	False
+Hoolock_leuconedys_x_Hoolock_tianxing	Hoolock leuconedys x Hoolock tianxing	NC_033883.1	16514	44.27	76	False
+Saimiri_sciureus_sciureus	Saimiri sciureus sciureus	HQ644334.1	16473	40.85	53	False
+Allocebus_trichotus	Allocebus trichotus	NC_035631.1	16863	38.65	77	False
+Cacajao_ayresi	Cacajao ayresi	NC_064153.1	16685	38.91	77	False
+Plecturocebus_brunneus	Plecturocebus brunneus	NC_064201.1	16556	39.41	77	False
+Pan_troglodytes_schweinfurthii	Pan troglodytes schweinfurthii	JN191187.1	16553	43.74	52	False
+Alouatta_macconnelli	Alouatta macconnelli	NC_064187.1	16602	39.40	76	False
+Cercopithecus_mitis	Cercopithecus mitis	NC_023961.1	16512	42.45	53	False
+Pithecia_mittermeieri	Pithecia mittermeieri	NC_064160.1	16650	39.42	77	False
+Cheirogaleus_sibreei	Cheirogaleus sibreei	NC_035605.1	16440	37.80	77	False
+Papio_papio	Papio papio	NC_020009.2	16505	43.71	77	False
+Leontocebus_nigricollis	Leontocebus nigricollis	NC_064171.1	16569	40.91	77	False
+Macaca_mulatta	Macaca mulatta	NC_005943.1	16564	43.23	77	False
+Aotus_trivirgatus	Aotus trivirgatus	NC_064150.1	16594	38.72	77	False
+Alouatta_sp	Alouatta sp.	PV032501.1	16570	39.54	75	False
+Lepilemur_tymerlachsoni	Lepilemur tymerlachsoni	NC_034735.1	16780	40.12	77	False
+Tarsius_lariang	Tarsius lariang	NC_024051.1	16965	38.64	52	False
+Perodicticus_potto	Perodicticus potto	NC_012764.1	16638	41.72	52	False
+Loris_lydekkerianus	Loris lydekkerianus	NC_021955.1	16791	39.16	51	False
+Aotus_nancymaae	Aotus nancymaae	NC_018116.1	16469	38.66	81	False
+Palaeopropithecus_ingens	Palaeopropithecus ingens	NC_026090.1	16910	39.73	51	False
+Homo_heidelbergensis	Homo heidelbergensis	NC_023100.1	16568	43.43	76	False
+Nycticebus_coucang_insularis	Nycticebus coucang insularis	NC_040292.1	16765	40.57	77	False
+Brachyteles_arachnoides	Brachyteles arachnoides	CM104793.1	16573	39.76	1	False
+Hylobates_lar	Hylobates lar	NC_002082.1	16472	45.45	53	False
+Lepilemur_ahmansoni	Lepilemur ahmansoni	NC_034733.1	17179	40.20	77	False
+Alouatta_guariba	Alouatta guariba	PV032486.1	16589	39.54	75	False
+Propithecus_deckenii_coronatus	Propithecus deckenii coronatus	OM650079.1	17096	39.75	51	False
+Pongo_abelii	Pongo abelii	NC_002083.1	16499	45.94	77	False
+Aotus_vociferans	Aotus vociferans	NC_064163.1	16594	38.73	77	False
+Hylobates_pileatus	Hylobates pileatus	NC_014045.1	16502	45.19	52	False
+Plecturocebus_hoffmannsi	Plecturocebus hoffmannsi	NC_064206.1	16553	39.26	77	False
+Lepilemur_scottorum	Lepilemur scottorum	NC_034737.1	17038	40.95	77	False
+Saimiri_sciureus_macrodon	Saimiri sciureus macrodon	HQ644338.1	16471	40.64	53	False
+Felis_catus	Felis catus	NC_001700.1	17009	40.33	77	False
+Megaladapis_edwardsi	Megaladapis edwardsi	NC_026088.1	16781	39.03	51	False
+Ateles_paniscus	Ateles paniscus	NC_064191.1	16572	38.95	76	False
+Trachypithecus_cristatus	Trachypithecus cristatus	NC_023971.1	16557	39.01	53	False
+Simias_concolor	Simias concolor	NC_020667.1	16561	39.07	77	False
+Macaca_sylvanus	Macaca sylvanus	NC_002764.1	16586	43.07	53	False
+Gorilla_beringei	Gorilla beringei	NC_037853.1	15448	43.71	76	False
+Trachypithecus_delacouri	Trachypithecus delacouri	MF872232.1	16546	38.63	53	False
+Propithecus_edwardsi	Propithecus edwardsi	NC_026086.1	17100	40.20	51	False
+Trachypithecus_phayrei	Trachypithecus phayrei	NC_056326.1	16549	38.55	77	False
+Alouatta_seniculus	Alouatta seniculus	NC_027825.1	16557	39.45	77	False
+Pygathrix_cinerea_2_RL_2012	Pygathrix cinerea 2 RL-2012	NC_018063.1	16535	38.88	77	False
+Lepilemur_wrighti	Lepilemur wrighti	NC_034732.1	16943	41.44	77	False
+Alouatta_belzebul	Alouatta belzebul	NC_064195.1	16582	39.55	76	False
+Hylobates_agilis	Hylobates agilis	NC_014042.1	16500	45.68	52	False
+Nomascus_leucogenys	Nomascus leucogenys	NC_021957.1	16478	45.10	51	False
+Lepilemur_otto	Lepilemur otto	NC_034724.1	16769	41.67	77	False
+Aotus_azarai	Aotus azarai	NC_021939.1	16555	38.54	51	False
+Carlito_syrichta_fraterculus	Carlito syrichta fraterculus	CM188079.1	17019	38.94	1	False
+Chlorocebus_sabaeus	Chlorocebus sabaeus	NC_008066.1	16550	42.46	78	False
+Lepilemur_sahamalaza	Lepilemur sahamalaza	NC_034734.1	16773	39.86	77	False
+Callimico_goeldii	Callimico goeldii	NC_024628.1	16523	38.04	52	False
+Saimiri_boliviensis_peruviensis	Saimiri boliviensis peruviensis	HQ644340.1	16473	40.64	53	False
+Chlorocebus_djamdjamensis	Chlorocebus djamdjamensis	NC_034277.1	16443	42.84	77	False
+Alouatta_caraya	Alouatta caraya	NC_064185.1	16520	39.64	76	False
+Homo_sapiens_neanderthalensis	Homo sapiens neanderthalensis	NC_011137.1	16565	44.39	76	False
+Nomascus_concolor	Nomascus concolor	PQ740954.1	16468	44.92	52	False
+Nomascus_gabriellae	Nomascus gabriellae	NC_018753.1	16478	45.09	77	False
+Lepilemur_jamesi	Lepilemur jamesi	NC_034736.1	16845	41.66	77	False
+Phaner_electromontis	Phaner electromontis	NC_035607.1	16914	38.40	77	False
+Leontocebus_fuscicollis	Leontocebus fuscicollis	NC_064181.1	16560	40.57	77	False
+Macaca_thibetana_thibetana	Macaca thibetana thibetana	CM045128.1	16548	43.20	1	False
+Macaca_fascicularis_aureus	Macaca fascicularis aureus	LC225390.1	16547	43.18	52	False
+Plecturocebus_moloch	Plecturocebus moloch	NC_064208.1	16555	39.35	77	False
+Eulemur_mongoz	Eulemur mongoz	NC_010300.1	16686	38.97	71	False
+Chlorocebus_tantalus	Chlorocebus tantalus	NC_009748.1	16368	42.68	53	False
+Chlorocebus_cynosuros	Chlorocebus cynosuros	NC_024933.1	16334	42.57	52	False
+Homo_sapiens	Homo sapiens	NC_012920.1	16569	44.36	77	False
+Lepilemur_fleuretae	Lepilemur fleuretae	NC_034718.1	16879	41.69	77	False
+Cacajao_calvus_calvus	Cacajao calvus calvus	NC_064154.1	16701	38.75	77	False
+Cheirogaleus_medius	Cheirogaleus medius	NC_065434.1	16613	38.07	77	False
+Sapajus_apella_macrocephalus	Sapajus apella macrocephalus	NC_064167.1	16544	39.13	77	False
+Saguinus_midas	Saguinus midas	NC_064179.1	16501	40.56	77	False
+Sapajus_robustus	Sapajus robustus	PP454556.1	16530	39.05	52	False
+Equus_caballus	Equus caballus	NC_001640.1	16660	41.96	77	False
+Saguinus_sp_MJ_2022	Saguinus sp. MJ-2022	OM328898.1	16499	40.66	53	False
+Tarsius_dentatus	Tarsius dentatus	NC_024052.1	16965	38.82	52	False
+Trachypithecus_johnii	Trachypithecus johnii	NC_019583.1	16544	38.87	77	False
+Hylobates_muelleri_muelleri	Hylobates muelleri muelleri	LC548016.1	16502	45.70	52	False
+Aotus_azarai_infulatus	Aotus azarai infulatus	KC592390.1	16586	38.56	52	False
+Mico_argentatus	Mico argentatus	NC_064175.1	16562	40.35	77	False
+Pan_troglodytes_ellioti	Pan troglodytes ellioti	KX211941.1	16558	43.62	73	False
+Saimiri_oerstedii_citrinellus	Saimiri oerstedii citrinellus	NC_023211.1	16472	40.62	53	False
+Cebus_castaneus	Cebus castaneus	NC_087896.1	16553	39.03	76	False
+Prolemur_simus	Prolemur simus	NC_021959.1	16765	37.15	51	False
+Pygathrix_cinerea_1_RL_2012	Pygathrix cinerea 1 RL-2012	NC_018062.1	16535	38.69	77	False
+Sapajus_nigritus	Sapajus nigritus	NC_087900.1	16531	38.99	76	False
+Cebus_unicolor	Cebus unicolor	NC_064169.1	16553	38.53	77	False
+Macaca_fascicularis	Macaca fascicularis	NC_012670.1	16575	43.11	77	False
+Ateles_marginatus	Ateles marginatus	NC_064192.1	16537	39.18	76	False
+Alouatta_guariba_clamitans	Alouatta guariba clamitans	NC_064186.1	16600	39.44	76	False
+Aotus_lemurinus	Aotus lemurinus	NC_019799.1	16580	38.95	77	False
+Mandrillus_sphinx	Mandrillus sphinx	NC_021956.1	16546	42.08	51	False
+Cheracebus_lucifer	Cheracebus lucifer	NC_064199.1	16698	38.67	76	False
+Lepilemur_betsileo	Lepilemur betsileo	NC_034726.1	16916	41.61	77	False
+Cheracebus_regulus	Cheracebus regulus	NC_064197.1	16706	38.90	76	False
+Canis_lupus_familiaris	Canis lupus familiaris	NC_002008.4	16727	39.65	77	False
+Varecia_variegata_variegata	Varecia variegata variegata	NC_012773.1	16965	38.05	52	False
+Bos_taurus	Bos taurus	NC_006853.1	16338	39.42	77	False
+Pithecia_pissinatti	Pithecia pissinatti	NC_064158.1	16650	39.48	77	False
+Lepilemur_hollandorum	Lepilemur hollandorum	NC_034738.1	17018	41.10	77	False
+Microcebus_jollyae	Microcebus jollyae	NC_035564.1	16794	36.64	77	False
+Macaca_arctoides	Macaca arctoides	NC_025201.1	16558	43.17	53	False
+Plecturocebus_grovesi	Plecturocebus grovesi	NC_064205.1	16556	39.33	77	False
+Lepilemur_edwardsi	Lepilemur edwardsi	NC_034720.1	16923	41.59	77	False
+Mico_humilis	Mico humilis	NC_064164.1	16568	40.16	77	False
+Nomascus_siki	Nomascus siki	NC_014051.1	16476	45.17	52	False
+Microcebus_margotmarshae	Microcebus margotmarshae	NC_035603.1	16821	35.68	77	False
+Pan_paniscus	Pan paniscus	NC_001644.1	16563	43.40	76	False
+Cebuella_niveiventris	Cebuella niveiventris	NC_064170.1	16537	40.08	77	False
+Cebuella_pygmaea	Cebuella pygmaea	NC_021942.1	16520	39.68	51	False
+Saimiri_oerstedii_oerstedii	Saimiri oerstedii oerstedii	HQ644337.1	16473	40.68	53	False
+Callithrix_kuhlii	Callithrix kuhlii	NC_027658.1	16500	40.47	76	False
+Lepilemur_ankaranensis	Lepilemur ankaranensis	NC_034717.1	17157	40.46	77	False
+Pygathrix_nigripes	Pygathrix nigripes	NC_018061.1	16536	38.67	77	False
+Pan_troglodytes_verus	Pan troglodytes verus	KX211957.1	16556	43.59	73	False
+Plecturocebus_caligatus	Plecturocebus caligatus	NC_064202.1	16555	39.44	77	False
+Pongo_pygmaeus	Pongo pygmaeus	NC_001646.1	16389	45.67	52	False
+Macaca_leucogenys	Macaca leucogenys	NC_031156.1	16565	43.25	77	False
+Microcebus_simmonsi	Microcebus simmonsi	NC_035630.1	16623	36.06	77	False
+Trachypithecus_obscurus	Trachypithecus obscurus	NC_006900.1	16560	38.71	53	False
+Varecia_variegata	Varecia variegata	NC_026085.1	17051	38.03	51	False
+Pithecia_albicans	Pithecia albicans	NC_064161.1	16651	39.50	77	False
+Mirza_coquereli	Mirza coquereli	NC_035656.1	17066	36.89	77	False
+Gorilla_gorilla_gorilla	Gorilla gorilla gorilla	NC_011120.1	16412	43.80	77	False
+Lepilemur_hubbardi	Lepilemur hubbardi	NC_014453.1	16854	40.64	53	False
+Eulemur_fulvus_fulvus	Eulemur fulvus fulvus	NC_012766.1	17126	39.06	52	False
+Semnopithecus_schistaceus	Semnopithecus schistaceus	NC_057099.1	16534	39.05	77	False
+Plecturocebus_cupreus	Plecturocebus cupreus	NC_021965.1	16551	39.25	53	False
+Chiropotes_chiropotes	Chiropotes chiropotes	NC_024629.1	16670	38.33	52	False
+Trachypithecus_hatinhensis	Trachypithecus hatinhensis	NC_019579.1	16547	38.73	77	False
+Didelphis_virginiana	Didelphis virginiana	NC_001610.1	17084	33.18	52	False
+Pan_troglodytes_troglodytes	Pan troglodytes troglodytes	KX211952.1	16552	43.70	73	False
+Saguinus_mystax	Saguinus mystax	NC_064180.1	16505	38.25	77	False
+Trachypithecus_phayrei_crepuscula	Trachypithecus phayrei crepuscula	KY425609.1	16552	38.99	52	False
+Microcebus_griseorufus	Microcebus griseorufus	NC_035558.1	16719	36.46	77	False
+Lagothrix_flavicauda	Lagothrix flavicauda	PZ228854.1	16603	39.05	78	False
+Sapajus_cay	Sapajus cay	NC_087898.1	16544	39.06	76	False
+Chiropotes_albinasus	Chiropotes albinasus	NC_021946.1	16706	38.46	51	False
+Callithrix_sp_BJT022	Callithrix sp. BJT022	MZ027648.1	16182	40.21	52	False
+Lepilemur_aeeclis	Lepilemur aeeclis	NC_034730.1	16941	40.69	77	False
+Saimiri_oerstedii	Saimiri oerstedii	NC_064173.1	16472	40.68	77	False
+Papio_hamadryas_hamadryas	Papio hamadryas hamadryas	NC_061413.1	16516	43.64	77	False
+Plecturocebus_donacophilus	Plecturocebus donacophilus	NC_019801.1	16563	40.10	77	False
+Cercocebus_atys_atys	Cercocebus atys atys	KP090062.1	16536	41.70	52	False
+Propithecus_tattersalli	Propithecus tattersalli	NC_027740.1	17099	40.05	76	False
+Cacajao_melanocephalus	Cacajao melanocephalus	NC_064152.1	16692	38.78	77	False
+Perodicticus_potto_edwarsi	Perodicticus potto edwarsi	KC757407.1	16618	41.80	51	False
+Alouatta_seniculus_puruensis	Alouatta seniculus puruensis	NC_064188.1	16678	39.12	76	False
+Lepilemur_microdon	Lepilemur microdon	NC_034739.1	17050	41.41	77	False
+Eulemur_fulvus_mayottensis	Eulemur fulvus mayottensis	NC_012769.1	17118	39.07	52	False
+Trachypithecus_germaini	Trachypithecus germaini	NC_019580.1	16552	38.73	77	False
+Rhinopithecus_brelichi	Rhinopithecus brelichi	NC_018057.1	16553	38.40	77	False
+Microcebus_murinus	Microcebus murinus	NC_028718.1	17114	36.26	76	False
+Cercocebus_chrysogaster	Cercocebus chrysogaster	NC_021943.1	16551	41.97	51	False
+Galago_senegalensis	Galago senegalensis	NC_012761.1	16795	41.03	52	False
+Chlorocebus_pygerythrus	Chlorocebus pygerythrus	NC_009747.1	16343	42.61	53	False
+Lepilemur_dorsalis	Lepilemur dorsalis	NC_034721.1	17078	40.15	77	False
+Trachypithecus_shortridgei	Trachypithecus shortridgei	NC_019581.1	16529	38.98	77	False
+Cebus_olivaceus	Cebus olivaceus	NC_064165.1	16553	39.05	77	False
+Microcebus_rufus	Microcebus rufus	NC_035562.1	16819	35.74	77	False
+Hoolock_tianxing	Hoolock tianxing	NC_033884.1	16511	44.10	76	False
+Hylobates_albibarbis	Hylobates albibarbis	LC548013.1	16504	45.65	52	False
+Leontopithecus_chrysopygus	Leontopithecus chrysopygus	NC_037878.1	16618	36.88	76	False
+Eulemur_rufifrons	Eulemur rufifrons	CM083855.1	17079	39.17	1	False
+Microcebus_myoxinus	Microcebus myoxinus	NC_035557.1	16842	36.50	77	False
+Cercopithecus_diana	Cercopithecus diana	NC_023963.1	16505	42.84	53	False
+Cheracebus_torquatus	Cheracebus torquatus	NC_064198.1	16716	38.94	76	False
+Nomascus_hainanus	Nomascus hainanus	PZ236445.1	16481	45.24	77	False
+Loris_lydekkerianus_malabaricus	Loris lydekkerianus malabaricus	OR115512.1	16720	38.94	51	False
+Microcebus_bongolavensis	Microcebus bongolavensis	NC_035559.1	16658	36.58	77	False
+Propithecus_sp_m_MH_2023	Propithecus sp. m MH-2023	OR822277.2	16894	38.58	38	False
+Brachyteles_hypoxanthus	Brachyteles hypoxanthus	PQ846776.1	16635	39.64	76	False
+Microcebus_tanosi	Microcebus tanosi	NC_035555.1	16649	36.02	77	False
+Trachypithecus_mauritius	Trachypithecus mauritius	NC_056325.1	16554	38.76	77	False
+Saimiri_macrodon	Saimiri macrodon	NC_064183.1	16473	40.68	77	False
+Eulemur_rubriventer	Eulemur rubriventer	NC_026098.1	17534	39.12	51	False
+Xanthonycticebus_pygmaeus	Xanthonycticebus pygmaeus	NC_033381.1	16856	39.96	76	False
+Macaca_fuscata	Macaca fuscata	NC_025513.1	16565	43.44	52	False
+Cacajao_calvus	Cacajao calvus	NC_021967.1	16702	38.73	51	False
+Varecia_rubra	Varecia rubra	NC_084385.1	16998	38.19	76	False
+Macaca_fascicularis_fascicularis	Macaca fascicularis fascicularis	LC536646.1	16562	43.26	27	False
+Propithecus_diadema	Propithecus diadema	NC_026084.1	17084	40.35	75	False
+Cacajao_calvus_ucayalii	Cacajao calvus ucayalii	NC_064162.1	16712	38.91	77	False
+Allenopithecus_nigroviridis	Allenopithecus nigroviridis	NC_023965.1	16517	40.87	54	False
+Pan_troglodytes	Pan troglodytes	NC_001643.1	16554	43.69	76	False
+Saguinus_inustus	Saguinus inustus	NC_064166.1	16480	38.22	77	False
+Colobus_guereza	Colobus guereza	NC_006901.1	16648	40.75	53	False
+Cacajao_hosomi	Cacajao hosomi	NC_064149.1	16740	38.75	77	False
+Hapalemur_griseus	Hapalemur griseus	NC_021950.1	16878	37.85	51	False
+Ateles_geoffroyi	Ateles geoffroyi	NC_064194.1	16563	39.14	76	False
+Sus_scrofa	Sus scrofa	NC_000845.1	16613	39.46	77	False
+Tarsius_wallacei	Tarsius wallacei	NC_024053.1	16957	38.64	52	False
+Saimiri_boliviensis	Saimiri boliviensis	NC_021966.1	16471	40.68	53	False
+Microcebus_sp	Microcebus sp.	PX591022.1	16915	35.74	51	False
+Microcebus_ravelobensis	Microcebus ravelobensis	NC_035556.1	16652	36.60	77	False
+Gorilla_beringei_graueri	Gorilla beringei graueri	KF914213.1	16429	43.99	52	False
+Macaca_radiata	Macaca radiata	NC_036508.1	16563	43.63	76	False
+Macaca_leonina	Macaca leonina	NC_027604.1	17050	42.77	77	False
+Presbytis_femoralis_femoralis	Presbytis femoralis femoralis	KU899140.1	16548	38.06	73	False
+Callithrix_geoffroyi	Callithrix geoffroyi	NC_021941.1	16502	40.47	51	False
+Cercocebus_torquatus	Cercocebus torquatus	NC_023964.1	16542	41.42	53	False
+Loris_lydekkerianus_lydekkerianus	Loris lydekkerianus lydekkerianus	OR115511.1	16778	39.14	51	False
+Alouatta_discolor	Alouatta discolor	NC_064189.1	16587	39.71	76	False
+Papio_hamadryas	Papio hamadryas	NC_001992.1	16521	43.68	53	False
+Macaca_thibetana	Macaca thibetana	NC_011519.1	16540	43.20	54	False
+Macaca_munzala	Macaca munzala	PQ740951.1	16567	43.30	52	False
+Cacajao_calvus_novaesi	Cacajao calvus novaesi	NC_064156.1	16712	38.95	77	False
+Trachypithecus_pileatus	Trachypithecus pileatus	NC_024529.1	16526	39.00	53	False
+Microcebus_tavaratra	Microcebus tavaratra	NC_035560.1	16646	36.33	77	False
+Lepilemur_milanoii	Lepilemur milanoii	NC_034725.1	17057	40.33	77	False
+Daubentonia_madagascariensis	Daubentonia madagascariensis	NC_010299.1	16620	41.67	77	False
+Trachypithecus_poliocephalus	Trachypithecus poliocephalus	NC_034795.1	16556	38.72	76	False
+Chiropotes_sagulatus	Chiropotes sagulatus	NC_064157.1	16683	38.34	77	False
+Cheirogaleus_major	Cheirogaleus major	NC_035655.1	16596	38.19	77	False
+Cebus_kaapori	Cebus kaapori	NC_087895.1	16550	39.05	76	False
+Ateles_belzebuth	Ateles belzebuth	NC_019800.1	16560	39.09	77	False
+Galago_moholi	Galago moholi	NC_021949.1	16650	40.95	51	False
+Semnopithecus_vetulus	Semnopithecus vetulus	NC_019582.1	16554	39.45	77	False
+Hylobates_moloch	Hylobates moloch	LC548014.1	16504	45.38	52	False
+Otolemur_crassicaudatus	Otolemur crassicaudatus	NC_012762.1	16827	43.14	52	False
+Pithecia_vanzolinii	Pithecia vanzolinii	NC_064151.1	16647	39.48	77	False
+Chlorocebus_aethiops_x_Chlorocebus_pygerythrus	Chlorocebus aethiops x Chlorocebus pygerythrus	NC_034276.1	16388	42.73	77	False
+Trachypithecus_barbei	Trachypithecus barbei	MF872235.1	16554	38.78	53	False
+Saguinus_oedipus	Saguinus oedipus	NC_021960.1	16551	40.57	51	False
+Hoolock_leuconedys	Hoolock leuconedys	NC_033882.1	16511	44.19	76	False
+Macaca_cyclopis	Macaca cyclopis	NC_027449.1	16563	43.13	77	False
+Allochrocebus_lhoesti	Allochrocebus lhoesti	NC_023962.1	16518	41.97	53	False
+Presbytis_melalophos_mitrata	Presbytis melalophos mitrata	KY117601.1	16651	37.98	53	False
+Saguinus_geoffroyi	Saguinus geoffroyi	NC_064172.1	16528	40.62	77	False
+Lepilemur_septentrionalis	Lepilemur septentrionalis	NC_034727.1	16935	40.11	77	False
+Rhinopithecus_roxellana	Rhinopithecus roxellana	NC_008218.1	16549	38.52	77	False
+Mirza_zaza	Mirza zaza	NC_035606.1	16777	37.07	77	False
+Macaca_silenus	Macaca silenus	NC_025221.1	16541	42.86	53	False
+Callithrix_aurita	Callithrix aurita	NC_050682.1	16471	40.87	76	False
+Chlorocebus_aethiops	Chlorocebus aethiops	NC_007009.1	16389	42.72	53	False
+Rhinopithecus_avunculus	Rhinopithecus avunculus	NC_015485.1	16548	38.48	53	False
+Lepilemur_grewcocki	Lepilemur grewcocki	NC_034729.1	17052	41.67	77	False
+Loris_tardigradus	Loris tardigradus	NC_012763.1	16776	39.21	52	False
+Cebus_albifrons	Cebus albifrons	NC_002763.1	16554	39.08	53	False
+Lepilemur_randrianasoloi	Lepilemur randrianasoloi	NC_034722.1	16993	40.89	77	False
+Homo_sapiens_subsp_Denisova	Homo sapiens subsp. 'Denisova'	NC_013993.1	16570	44.31	75	False
+Pygathrix_cinerea	Pygathrix cinerea	NC_088556.1	16541	38.87	75	False
+Trachypithecus_geei	Trachypithecus geei	NC_056324.1	16521	39.14	77	False
+Leontopithecus_rosalia	Leontopithecus rosalia	NC_021952.1	16872	37.50	51	False
+Alouatta_palliata	Alouatta palliata	NC_064193.1	16525	40.09	76	False
+Lepilemur_ruficaudatus	Lepilemur ruficaudatus	NC_021953.1	16936	40.69	51	False
+Saimiri_cassiquiarensis	Saimiri cassiquiarensis	NC_064182.1	16472	40.78	77	False
+Saimiri_boliviensis_boliviensis	Saimiri boliviensis boliviensis	NC_018096.1	16473	40.67	77	False
+Cercopithecus_albogularis	Cercopithecus albogularis	NC_021944.1	16544	42.44	51	False
+Papio_ursinus	Papio ursinus	NC_020010.2	16496	43.68	77	False
+Hylobates_muelleri_abbotti	Hylobates muelleri abbotti	PQ867516.1	16501	45.54	76	False
+Lagothrix_poeppigii	Lagothrix poeppigii	NC_084368.1	16594	39.63	75	False
+Lepilemur_petteri	Lepilemur petteri	NC_034723.1	16789	41.80	77	False
+Propithecus_coquereli	Propithecus coquereli	NC_011053.1	17104	40.14	77	False
+Alouatta_juara	Alouatta juara	NC_064196.1	16567	39.30	76	False
+Saimiri_ustus	Saimiri ustus	NC_064168.1	16474	40.76	77	False
+Lemur_catta	Lemur catta	NC_059325.1	17086	38.03	75	False
+Cercopithecus_neglectus	Cercopithecus neglectus	NC_056341.1	16490	42.53	76	False
+Macaca_sinica	Macaca sinica	NC_037437.1	16525	43.54	77	False
+Trachypithecus_francoisi	Trachypithecus francoisi	NC_023970.1	16554	38.94	53	False
+Trachypithecus_laotum	Trachypithecus laotum	NC_056330.1	16547	38.60	77	False
+Lophocebus_aterrimus	Lophocebus aterrimus	NC_021954.1	16563	43.02	51	False
+Presbytis_melalophos	Presbytis melalophos	NC_008217.1	16543	38.00	54	False
+Macaca_tonkeana	Macaca tonkeana	NC_025222.1	16560	43.44	53	False
+Lepilemur_leucopus	Lepilemur leucopus	NC_034719.1	16753	41.94	77	False
+Rhinopithecus_bieti_1_RL_2012	Rhinopithecus bieti 1 RL-2012	NC_018058.1	16550	38.45	77	False
+Callithrix_jacchus	Callithrix jacchus	NC_025586.1	16499	40.31	52	False
+Gorilla_gorilla	Gorilla gorilla	NC_001645.1	16364	43.89	52	False
+Macaca_fuscata_fuscata	Macaca fuscata fuscata	LC536647.1	16563	43.37	27	False
+Eulemur_rufus	Eulemur rufus	NC_021948.1	16280	38.81	51	False
+Symphalangus_syndactylus	Symphalangus syndactylus	NC_014047.1	16516	43.51	52	False
+Cheracebus_lugens	Cheracebus lugens	NC_024630.1	16689	38.79	52	False
+Microcebus_lehilahytsara	Microcebus lehilahytsara	NC_035602.1	16825	36.15	77	False
+Alouatta_ululata	Alouatta ululata	PV032492.1	16583	39.55	75	False
+Carlito_syrichta	Carlito syrichta	NC_012774.1	17004	39.14	76	False
+Cephalopachus_bancanus	Cephalopachus bancanus	NC_002811.1	16927	39.01	52	False
+Rhinopithecus_strykeri	Rhinopithecus strykeri	NC_018059.1	16550	38.40	77	False
+Papio_cynocephalus	Papio cynocephalus	NC_020007.2	16515	43.66	77	False
+Macaca_nigra	Macaca nigra	NC_026120.1	16564	42.97	53	False
+Pithecia_sp_MJ_2022	Pithecia sp. MJ-2022	OM328995.1	16650	39.46	53	False
+Microcebus_danfossi	Microcebus danfossi	NC_035600.1	16809	36.51	77	False
+Pithecia_hirsuta	Pithecia hirsuta	NC_064159.1	16650	39.52	77	False
+Pygathrix_nemaeus	Pygathrix nemaeus	NC_008220.1	15467	38.69	52	False
+Plecturocebus_bernhardi	Plecturocebus bernhardi	NC_064200.1	16558	39.23	77	False
+Semnopithecus_entellus	Semnopithecus entellus	NC_008215.1	16532	39.03	53	False
+Plecturocebus_miltoni	Plecturocebus miltoni	NC_064207.1	16555	39.48	77	False
+Mico_sp_n_MJ_2022	Mico sp. n. MJ-2022	OM328939.1	16563	40.36	53	False
+Saimiri_sciureus	Saimiri sciureus	NC_012775.1	16474	40.69	52	False
+Phaner_pallescens	Phaner pallescens	NC_035608.1	16577	38.38	77	False
+Saguinus_bicolor	Saguinus bicolor	NC_064176.1	16493	40.60	77	False
+Nasalis_larvatus	Nasalis larvatus	NC_008216.1	16570	39.12	53	False

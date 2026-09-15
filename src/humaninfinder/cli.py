@@ -1,5 +1,6 @@
 import concurrent.futures
 import os
+import shutil
 
 import click
 import pandas as pd
@@ -36,7 +37,7 @@ def process_single_record(record, table, hmm, rescue, hmm_path):
 
 
 @click.group()
-@click.version_option(version="1.0.9")
+@click.version_option(version="1.1.0")
 def main():
     """HumaninFinder: Discovery tool for Humanin-like peptides using Hybrid AI."""
     pass
@@ -100,6 +101,10 @@ def predict(input, output, threshold, table, hmm, rescue, cpus, all_candidates):
     """Scan genomes to identify and classify Humanin-like peptides."""
     hmm_path = os.path.join(os.path.dirname(__file__), "data/humanin.hmm")
 
+    if hmm and not shutil.which("hmmsearch"):
+        click.secho("[!] Warning: 'hmmsearch' (HMMER3) not found in PATH. Proceeding without HMM localization.", fg="yellow")
+        hmm = False
+
     click.echo(f"[*] Loading sequences from {input}...")
     records = list(SeqIO.parse(input, "fasta"))
 
@@ -135,11 +140,8 @@ def predict(input, output, threshold, table, hmm, rescue, cpus, all_candidates):
                     (h for h in hmm_hits if h["strand"] == cand["strand"] and h["frame"] == cand["frame"]), None
                 )
 
-                score = max(score, 0.65)
                 if cand_hit:
                     score = min(0.99, score + 0.15)
-                else:
-                    score = min(0.95, score + 0.05)
 
                 if cand["status"] == "Non-canonical":
                     score *= 0.95

@@ -38,3 +38,19 @@ def test_16s_locus_fallback():
     assert start < end
     assert start >= 0
     assert end <= 10000
+
+
+def test_multi_frame_sliding_window_rescue():
+    # Sequence shifted by 2 nucleotides (Frame 2 / offset 2)
+    # Similar to Mirza locus (AGG stop codon in table 2 at pos 2)
+    core_dna = "ATGGCTACACGAAGGTTCAACTGTCTCTTACTTTCAGTCAGTGAAATTGACCTTCCCGTGAAG"
+    shifted_dna = Seq("NN" + core_dna)
+    results = sliding_window_rescue(shifted_dna, table=2, window_size=21, step=3)
+
+    # Must find candidate in frame 2
+    frame2_cands = [r for r in results if r["frame"] == 2]
+    assert len(frame2_cands) > 0
+    # Must find the pseudogenic candidate
+    pseudogenes = [r for r in frame2_cands if r["status"] == "Pseudogenic" and "MATR*FNCLLLS" in r["seq"]]
+    assert len(pseudogenes) == 1
+

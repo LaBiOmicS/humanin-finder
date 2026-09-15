@@ -1,4 +1,4 @@
-# HumaninFinder v1.0.9 🧬🤖
+# HumaninFinder v1.1.0 🧬🤖
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/LaBiOmicS/humanin-finder/main/logo.png" alt="HumaninFinder Logo" width="70%">
@@ -103,21 +103,24 @@ humanin-finder setup
 
 ### 2. Run Discovery Pipeline
 ```bash
-humanin-finder predict -i genome.fasta -o results --hmm --rescue
+humanin-finder predict -i examples/test_sample.fasta -o results/propithecus --hmm --rescue
 ```
 
 ### 3. Biological Interpretation
 ```bash
 # Get a summary of your findings from the AI Specialist
-humanin-finder agent --results results_results.csv
+humanin-finder agent --results results/propithecus_results.csv
 ```
 
 ---
 
 ## 📖 Documentation
-Detailed information is available in the **[paper/](paper/)** directory:
-- 🛠️ **[Software Paper](paper/joss/paper.md)**: Architecture and methodology for JOSS.
-- 🏗️ **[Scientific Report](paper/primate_study/evolutionary_analysis_report.md)**: Evolutionary dynamics of Humanin in Primates.
+Detailed technical documentation and reports are available:
+- 🚀 **[Quickstart Guide](docs/quickstart.md)**: Step-by-step setup and common use cases.
+- 📋 **[CLI Reference](docs/cli_reference.md)**: Detailed parameter reference for all subcommands.
+- 🧬 **[Architecture Overview](docs/README.md)**: High-level architectural flowchart.
+- 🛠️ **[Software Paper](paper/joss/paper.md)**: Software description and methodology draft for JOSS.
+- 🏗️ **[Scientific Report](paper/primate_study/evolutionary_analysis_report.md)**: Evolutionary dynamics of Humanin in 61 Primates.
 
 ---
 

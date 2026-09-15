@@ -48,17 +48,33 @@ def get_physicochemical_features(seq):
     p = peptides.Peptide(seq.upper().replace("X", "").replace("*", ""))
     return [p.charge(pH=7.4), p.isoelectric_point(), p.hydrophobicity(), p.aliphatic_index()]
 
-def get_hybrid_embeddings(sequences, model, tokenizer, device):
+import sklearn
+
+def get_hybrid_embeddings(sequences, model, tokenizer, device, batch_size=32):
     model.eval()
     all_features = []
     with torch.no_grad():
-        for seq in sequences:
-            clean_seq = str(seq).upper().replace("X", "").replace("*", "")
-            inputs = tokenizer(clean_seq, return_tensors="pt", padding=True, truncation=True).to(device)
+        for i in range(0, len(sequences), batch_size):
+            batch = [str(s).upper().replace("X", "").replace("*", "") for s in sequences[i : i + batch_size]]
+            inputs = tokenizer(batch, return_tensors="pt", padding=True, truncation=True).to(device)
             outputs = model(**inputs)
-            esm_emb = outputs.last_hidden_state.mean(dim=1).cpu().numpy().flatten()
-            bio_features = get_physicochemical_features(clean_seq)
-            all_features.append(np.concatenate([esm_emb, bio_features]))
+
+            attention_mask = inputs["attention_mask"]
+            token_embeddings = outputs.last_hidden_state
+
+            input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
+            input_mask_expanded[:, 0, :] = 0  # Remove <cls>
+            for b_idx in range(len(batch)):
+                last_idx = attention_mask[b_idx].nonzero()[-1].item()
+                input_mask_expanded[b_idx, last_idx, :] = 0  # Remove <eos>
+
+            sum_embeddings = torch.sum(token_embeddings * input_mask_expanded, 1)
+            sum_mask = torch.clamp(input_mask_expanded.sum(1), min=1e-9)
+            esm_embeddings = (sum_embeddings / sum_mask).cpu().numpy()
+
+            for j, seq in enumerate(batch):
+                bio_features = get_physicochemical_features(seq)
+                all_features.append(np.concatenate([esm_embeddings[j], bio_features]))
     return np.array(all_features)
 
 def train():
@@ -113,7 +129,7 @@ def train():
         'seed': SEED,
         'software_versions': {
             'torch': torch.__version__,
-            'sklearn': '1.8.0', # We fix this based on your env
+            'sklearn': sklearn.__version__,
             'numpy': np.__version__
         }
     }

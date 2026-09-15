@@ -41,13 +41,20 @@ htmlcov/
 humanin_out.*
 results.*
 official_study_results.*
+test_output_results.*
 *.tbl
 *.faa
 *.fa
 
 # Publication Case Studies
-paper/primate_study/
+paper/primate_study/*.csv
+paper/primate_study/*.fasta
 study/primate_evolution/
 
 # OS
 .DS_Store
+
+# Logs and Scratch
+*.log
+scratch/
+analysis/*.log

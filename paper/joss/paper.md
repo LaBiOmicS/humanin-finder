@@ -11,7 +11,7 @@ tags:
   - Artificial Intelligence
 authors:
   - name: Fabiano Bezerra Menegidio
-    orcid: 0000-0002-XXXX-XXXX
+    orcid: 0000-0002-4705-8352
     affiliation: 1
 affiliations:
   - name: LaBiOmicS, University of Mogi das Cruzes (UMC), Brazil
