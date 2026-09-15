@@ -37,7 +37,7 @@ venv.bak/
 .coverage
 htmlcov/
 
-# Tool outputs
+# Tool outputs and internal analyses
 humanin_out.*
 results.*
 official_study_results.*
@@ -45,6 +45,9 @@ test_output_results.*
 *.tbl
 *.faa
 *.fa
+analysis/
+METHODOLOGY.md
+*methodology*
 
 # Publication Case Studies
 paper/primate_study/*.csv
@@ -57,4 +60,4 @@ study/primate_evolution/
 # Logs and Scratch
 *.log
 scratch/
-analysis/*.log
+

@@ -1,7 +1,0 @@
-clade_group,total_loci,unique_species,mean_score,canonical_count,non_canonical_count,pseudogenic_count
-Cercopithecoidea (Old World Monkeys),91,91,0.9458754441938676,82,6,3
-Hominoidea,33,33,0.9900000000000001,33,0,0
-Other Primates,10,10,0.927737628112119,8,1,1
-Platyrrhini (New World Monkeys),112,112,0.9321557190216191,95,11,6
-Strepsirrhini (Lemurs & Lorises),91,91,0.884723144541289,69,11,11
-Tarsiiformes (Tarsiers),6,6,0.8639593377737494,4,2,0

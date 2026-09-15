@@ -3,10 +3,9 @@
 Welcome to the technical documentation for **HumaninFinder**.
 
 ## Table of Contents
-1. [Overview & Architecture](overview.md)
+1. [Architecture & Technical Design](architecture.md)
 2. [Quickstart Guide](quickstart.md)
 3. [CLI Reference](cli_reference.md)
-4. [Biological Background](biological_background.md)
 
 ---
 
