@@ -1,55 +1,46 @@
-# HumaninFinder Documentation
+# HumaninFinder Documentation Hub
 
-Welcome to the technical documentation for **HumaninFinder**.
-
-## Table of Contents
-1. [Architecture & Technical Design](architecture.md)
-2. [Quickstart Guide](quickstart.md)
-3. [CLI Reference](cli_reference.md)
+Welcome to the technical documentation for **HumaninFinder**, an organism-agnostic framework combining deep protein language models (ESM-2) with biophysical analysis for the discovery and evolutionary characterization of Humanin-like peptides.
 
 ---
 
-## Architecture at a Glance
+## 📚 Documentation Index
+
+| Document | Description |
+| :--- | :--- |
+| 🏗️ **[Architecture & Technical Design](architecture.md)** | Exhaustive technical specification: 6-layer pipeline, algorithmic pseudo-code, ESM-2 masked mean pooling, RBF-SVC machine learning training, data-leakage prevention via 80% clustering, and full technology stack. |
+| 🚀 **[Quickstart Guide](quickstart.md)** | Step-by-step installation instructions (Pixi, Conda, Pip) and first execution walkthrough. |
+| 📋 **[CLI Reference](cli_reference.md)** | Detailed parameter and flag reference for all subcommands (`setup`, `predict`, `agent`). |
+
+---
+
+## 🧭 Pipeline Flowchart
 
 ```text
-               +----------------------------------+
-               | Mitochondrial DNA Genome (FASTA) |
-               +----------------------------------+
-                                 |
-                                 v
-               +----------------------------------+
-               | 16S Locus Detection (nhmmer /   |
-               | conserved anchor fallback)       |
-               +----------------------------------+
-                                 |
-        +------------------------+------------------------+
-        |                                                 |
-        v                                                 v
-+-----------------------+                         +-----------------------+
-| Canonical sORF Scan   |                         | Evolutionary Rescue   |
-| (NCBI Translation     |                         | (Sliding Window Scan, |
-|  Tables 1 - 33)       |                         |  Window=21, Step=3)   |
-+-----------------------+                         +-----------------------+
-        |                                                 |
-        +------------------------+------------------------+
-                                 |
-                                 v
-               +----------------------------------+
-               | Hybrid AI Scoring Engine:        |
-               | - ESM-2 (8M) Embeddings          |
-               | - Biophysical Features           |
-               | - Profile HMM Verification       |
-               +----------------------------------+
-                                 |
-                                 v
-               +----------------------------------+
-               | Biological Redundancy Filter     |
-               | (Non-Maximum Suppression > 50%)  |
-               +----------------------------------+
-                                 |
-                                 v
-               +----------------------------------+
-               | Output Results: CSV and FASTA    |
-               | + Optional Ollama AI Agent       |
-               +----------------------------------+
+[ Mitochondrial FASTA ] 
+          │
+          ▼
+[ Layer 1: 16S Locus Targeting (nhmmer / 16s_probe.fasta) ]
+          │
+    ┌─────┴─────┐
+    ▼           ▼
+[ Layer 2A: Canonical sORF Scan ]   [ Layer 2B: 3-Frame Evolutionary Rescue ]
+    │                                   │
+    └───────────────┬───────────────────┘
+                    ▼
+[ Layer 3: Hybrid AI Engine (ESM-2 8M Embeddings + Biophysical Descriptors) ]
+                    │
+                    ▼
+[ Layer 4: Orthogonal Validation (hmmsearch / humanin.hmm) & Penalties ]
+                    │
+                    ▼
+[ Layer 5: Biological Non-Maximum Suppression (NMS > 50% overlap) ]
+                    │
+          ┌─────────┴─────────┐
+          ▼                   ▼
+[ Layer 6A: Structured Outputs (CSV/FASTA) ]   [ Layer 6B: Local AI Agent (Ollama) ]
 ```
+
+---
+
+For inquiries, bug reports, and contributions, please visit our [GitHub Repository](https://github.com/LaBiOmicS/humanin-finder).

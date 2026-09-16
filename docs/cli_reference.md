@@ -1,45 +1,118 @@
-# CLI Reference
+# Command-Line Interface (CLI) Reference
 
-`HumaninFinder` provides three main subcommands: `setup`, `predict`, and `agent`.
+`HumaninFinder` exposes a modular CLI with three primary subcommands: `setup`, `predict`, and `agent`.
 
 ---
 
-## `humanin-finder setup`
-Validates that external binaries (HMMER3 / `hmmsearch`, `nhmmer`) and deep learning dependencies are correctly configured in your environment.
+## Global Syntax
+
+```bash
+humanin-finder [OPTIONS] COMMAND [ARGS]...
+```
+
+### Global Options
+- `--help`: Show the global help message and exit.
+- `--version`: Show the version and exit (`1.1.0`).
+
+---
+
+## Subcommands
+
+### 1. `humanin-finder setup`
+
+Validates your computational environment, verifying that external bioinformatics binaries (`nhmmer`, `hmmsearch`) are installed and functional, and confirming that PyTorch and ESM-2 models can be initialized.
 
 ```bash
 humanin-finder setup
 ```
 
+**Output Checks:**
+- Presence and executable permissions of `nhmmer` in `$PATH`.
+- Presence and executable permissions of `hmmsearch` in `$PATH`.
+- Availability of PyTorch (CPU or CUDA).
+- Integrity of packaged HMM profiles (`humanin.hmm`) and 16S probes (`16s_probe.fasta`).
+- Integrity of the pre-trained hybrid model (`humanin_detector_hybrid.joblib`).
+
 ---
 
-## `humanin-finder predict`
-Performs sORF discovery, evolutionary rescue, and hybrid AI classification on mitochondrial FASTA sequences.
+### 2. `humanin-finder predict`
+
+Executes the end-to-end peptide discovery, evolutionary rescue, and hybrid AI classification pipeline on one or more mitochondrial FASTA genomes.
 
 ```bash
 humanin-finder predict [OPTIONS]
 ```
 
-### Options:
-- `-i, --input PATH`: Path to input multi-FASTA file (required).
-- `-o, --output TEXT`: Output prefix for resulting CSV and FASTA files (required).
-- `-t, --threshold FLOAT`: Confidence threshold between 0.0 and 1.0 (default: `0.7`).
-- `-g, --table INTEGER`: NCBI genetic translation table (default: `2` - Vertebrate Mitochondrial).
-- `--hmm`: Enable profile HMM-based locus localization and orthogonal scoring bonus.
-- `--rescue`: Enable evolutionary rescue mode (sliding-window scan for non-canonical starts and pseudogenes).
-- `-c, --cpus INTEGER`: Number of CPU workers for parallel genome processing (default: all CPUs).
-- `--all-candidates`: Output all non-redundant candidates, rather than only the top candidate per genome.
+#### Parameters
+
+| Flag / Option | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| `-i, --input` | `PATH` | **Yes** | — | Path to the input FASTA file containing one or more complete or partial mitochondrial genomes. |
+| `-o, --output` | `TEXT` | **Yes** | — | Base path/prefix for generated output files (produces `<prefix>_results.csv` and `<prefix>_results.fasta`). |
+| `-t, --threshold` | `FLOAT` | No | `0.7` | Minimum calibrated score threshold ($0.0 \le t \le 1.0$) for reporting candidates. |
+| `-g, --table` | `INTEGER` | No | `2` | NCBI genetic translation table code. Supports all NCBI translation tables ($1$ to $33$). Default is $2$ (Vertebrate Mitochondrial). |
+| `--hmm` | `FLAG` | No | `False` | Enable profile HMM-based locus localization via `nhmmer` and orthogonal validation via `hmmsearch`. When enabled, significant HMM hits receive an additive score bonus ($+0.15$). |
+| `--rescue` | `FLAG` | No | `False` | Enable 3-frame evolutionary sliding-window rescue to detect non-canonical initiation codons and pseudogenic relics with internal stops. |
+| `-c, --cpus` | `INTEGER` | No | `None` (All) | Number of worker processes for parallel processing across multiple genomes. |
+| `--all-candidates` | `FLAG` | No | `False` | When specified, outputs all non-redundant candidates passing the threshold. When omitted, performs adaptive selection to retain only the top scoring candidate per genome. |
+
+#### Example Usage
+
+```bash
+# Standard high-sensitivity discovery on primate genomes
+humanin-finder predict \
+  -i primates.fasta \
+  -o results/primates_study \
+  --hmm \
+  --rescue \
+  --cpus 4
+
+# Analysis using Invertebrate Mitochondrial Code (Table 5)
+humanin-finder predict \
+  -i drosophila_mito.fasta \
+  -o results/drosophila \
+  -g 5 \
+  --rescue
+```
 
 ---
 
-## `humanin-finder agent`
-Interprets discovery results using a local LLM via Ollama with specialized scientific context in mitochondrial biology and aging.
+### 3. `humanin-finder agent`
+
+Interprets peptide discovery tables using a locally hosted Large Language Model (via **Ollama**) equipped with scientific context on mitochondrial biology, cytoprotection, BAX/IGFBP-3 signaling, and aging.
 
 ```bash
 humanin-finder agent [OPTIONS]
 ```
 
-### Options:
-- `-r, --results PATH`: Path to results CSV file (required).
-- `-m, --model TEXT`: Ollama model to use (default: `llama3`).
-- `-q, --query TEXT`: Optional custom scientific question about the results.
+#### Parameters
+
+| Flag / Option | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| `-r, --results` | `PATH` | **Yes** | — | Path to a discovery results CSV file generated by `humanin-finder predict`. |
+| `-m, --model` | `TEXT` | No | `llama3` | Name of the Ollama model to use (e.g., `llama3`, `mistral`, `llama3:70b`, `phi3`). |
+| `-q, --query` | `TEXT` | No | `None` | Optional domain-specific scientific question to pose to the agent regarding the results. If omitted, generates an executive biological overview. |
+
+#### Example Usage
+
+```bash
+# Default biological summary
+humanin-finder agent -r results/primates_study_results.csv
+
+# Specific inquiry
+humanin-finder agent \
+  -r results/primates_study_results.csv \
+  -m llama3 \
+  -q "Which lineages exhibit pseudogenization of the Humanin reading frame, and what are the specific codon alterations?"
+```
+
+---
+
+## Exit Codes
+
+| Exit Code | Meaning |
+| :--- | :--- |
+| `0` | Success: Analysis or command completed without errors. |
+| `1` | General Error: Invalid input file, missing required argument, or missing binary dependency. |
+| `2` | CLI Parsing Error: Invalid flag or option provided. |
+
