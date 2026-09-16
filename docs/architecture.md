@@ -1,165 +1,316 @@
-# Architecture & Technical Design
+# HumaninFinder: Technical Architecture, Algorithms, Training & Stack Specification
 
-`HumaninFinder` is built on a modular, multi-layered architecture designed to solve a fundamental challenge in computational biology: **the identification of small Open Reading Frames (sORFs) across vast evolutionary distances where primary sequence identity decays, but structural and biophysical properties persist.**
+`HumaninFinder` (v1.1.0) is a specialized bioinformatics and machine learning framework engineered for the discovery, classification, and biological interpretation of Humanin-like mitochondrial-derived peptides (MDPs / sORFs).
+
+This document provides a comprehensive technical reference detailing the system architecture, mathematical formulations, algorithmic implementations, machine learning training pipeline, technology stack, and engineering practices.
 
 ---
 
-## 🏗️ High-Level Architectural Diagram
+## 1. Technological Stack Matrix
+
+| Component / Layer | Technology / Library | Role & Functionality | Justification / Engineering Rationale |
+| :--- | :--- | :--- | :--- |
+| **Language & Core Runtime** | Python 3.10+ | Primary language environment | Standard in bioinformatics and scientific ML |
+| **Deep Protein Language Model** | Meta AI ESM-2 (`esm2_t6_8M_UR50D`) | Deep structural representation (320 dims) | Captures 3D structural propensities without relying on rigid sequence identity |
+| **Deep Learning Framework** | PyTorch & Hugging Face `transformers` | Model inference, tokenization, attention masks | Fast, standardized transformer execution on CPU/GPU |
+| **Classical Machine Learning** | Scikit-learn (`scikit-learn`) | RBF Support Vector Classifier, StandardScaler | High generalization on small-to-medium biological feature spaces; prevents deep net overfitting |
+| **Model Serialization** | Joblib | Model artifact storage (`.joblib`) | Efficient storage of trained estimators, scalers, and metadata |
+| **Biophysical Modeling** | `peptides` (Python) | Net charge, pI, hydrophobicity, aliphatic index | Explicit biophysical grounding complementary to neural representations |
+| **Genomic Sequence Processing** | Biopython (`Bio.Seq`, `Bio.SeqIO`) | FASTA parsing, multi-table translation | Robust handling of NCBI genetic codes (Tables 1 to 33) |
+| **Sequence Homology & HMMs** | HMMER3 (`nhmmer` & `hmmsearch`) | 16S rRNA DNA targeting & protein profile scoring | State-of-the-art profile Hidden Markov Models for biological anchoring |
+| **CLI & User Interface** | Click (`click`) | Modular command-line subcommands | Composable, typed, self-documenting CLI interface |
+| **Data Manipulation & IO** | Pandas & NumPy | Tabular reporting, matrix vectorization | High-throughput structured CSV and matrix operations |
+| **Autonomous AI Research Agent** | Local Ollama API (Llama 3 / Mistral) | Scientific interpretation of findings | 100% offline, private, domain-specific hypothesis generation |
+| **Environment Management** | Pixi (`pixi.toml`) & Conda/Micromamba | Reproducible multi-platform environments | Fast lockfile resolution including native binary dependencies (`hmmer`) |
+| **Containerization** | Docker & Singularity / Apptainer | Enterprise & HPC reproducibility | Portable execution across cloud and supercomputing clusters |
+| **Platform Integration** | Galaxy Tool XML (`galaxy/humaninfinder.xml`) | No-code GUI execution for bench biologists | Standardized integration into institutional Galaxy servers |
+| **Test Suite** | Pytest (`pytest`) | Unit, biological regression, and E2E testing | Continuous integration and test-driven development |
+
+---
+
+## 2. Comprehensive System Architecture
 
 ```text
-               +-------------------------------------------------------------+
-               |             Input Mitochondrial Genome (FASTA)              |
-               +-------------------------------------------------------------+
-                                              |
-                                              v
-               +-------------------------------------------------------------+
-               |            LAYER 1: Targeted 16S Locus Detection            |
-               |  - nhmmer DNA/RNA profile alignment (16s_probe.fasta)       |
-               |  - Heuristic fallback: conserved anchor 5'-GTTAATGTAGCTTA   |
-               |  - Restricts 17 kbp genome to ~1.6 kbp MT-RNR2 search space |
-               +-------------------------------------------------------------+
-                                              |
-                             +----------------+----------------+
-                             |                                 |
-                             v                                 v
-               +----------------------------+   +----------------------------+
-               | LAYER 2A: Canonical sORFs  |   | LAYER 2B: Evolutionary     |
-               | - Regex: M[^*]{9,49}*      |   |   Rescue (Multi-frame)     |
-               | - NCBI Tables 1 to 33      |   | - 3 reading frames (0, 1,2)|
-               | - Standard Met initiation  |   | - Sliding window (21 aa)   |
-               +----------------------------+   +----------------------------+
-                             |                                 |
-                             +----------------+----------------+
-                                              |
-                                              v
-               +-------------------------------------------------------------+
-               |               LAYER 3: Hybrid AI Scoring Engine             |
-               |  +-------------------------------------------------------+  |
-               |  |  Deep Structural Representation (ESM-2 Transformer)  |  |
-               |  |  - Masked Mean-Pooled Embeddings (320 dimensions)     |  |
-               |  +-------------------------------------------------------+  |
-               |  |  Biophysical & Physicochemical Descriptors           |  |
-               |  |  - Net Charge (pH 7.4) & Isoelectric Point (pI)       |  |
-               |  |  - Kyte-Doolittle Hydrophobicity & Aliphatic Index    |  |
-               |  +-------------------------------------------------------+  |
-               |  |  Calibrated Extra Trees Ensemble Classifier           |  |
-               |  |  - 100 randomized estimators, StandardScaler          |  |
-               |  +-------------------------------------------------------+  |
-               +-------------------------------------------------------------+
-                                              |
-                                              v
-               +-------------------------------------------------------------+
-               |            LAYER 4: Orthogonal Validation & Penalty         |
-               |  - Profile HMM verification (hmmsearch against humanin.hmm) |
-               |  - Synergistic boost (+0.15 for significant HMM hits)       |
-               |  - Status weighting: Non-canonical (0.95x), Pseudogene(0.75x)|
-               +-------------------------------------------------------------+
-                                              |
-                                              v
-               +-------------------------------------------------------------+
-               |     LAYER 5: Biological Non-Maximum Suppression (NMS)       |
-               |  - Eliminates overlapping technical window artifacts (> 50%)|
-               |  - Priority hierarchy: Canonical > Non-canonical > Pseudo   |
-               |  - Output modes: Adaptive Best-Hit vs. Exhaustive Sorfome   |
-               +-------------------------------------------------------------+
-                                              |
-                                              v
-               +-------------------------------------------------------------+
-               |            LAYER 6: Outputs & Expert AI Interpretation      |
-               |  - Structured Tabular Output (.csv) & Peptide FASTA (.fasta)|
-               |  - Built-in Local LLM Research Agent (via Ollama / Llama 3) |
-               +-------------------------------------------------------------+
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                 Complete Mitochondrial DNA Genome (FASTA)               │
+  └─────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ LAYER 1: PRECISION LOCUS TARGETING (nhmmer / Heuristic Anchor)          │
+  │ • nhmmer DNA profile search using 16s_probe.fasta                       │
+  │ • Heuristic Fallback: Conserved 14-bp rRNA anchor (5'-GTTAATGTAGCTTA-3') │
+  │ • Delimits MT-RNR2 search window (~1,600 bp vs ~17,000 bp whole genome) │
+  └─────────────────────────────────────────────────────────────────────────┘
+                                       │
+                  ┌────────────────────┴────────────────────┐
+                  ▼                                         ▼
+  ┌─────────────────────────────────┐   ┌───────────────────────────────────┐
+  │ LAYER 2A: CANONICAL sORF SCAN   │   │ LAYER 2B: MULTI-FRAME RESCUE      │
+  │ • Strict ORFs: M[^*]{9,49}*     │   │ • 3 reading frames (0, 1, 2)      │
+  │ • NCBI Genetic Tables 1 to 33   │   │ • Both strands (+1 and -1)        │
+  │ • Standard Met initiation       │   │ • Sliding window (21 aa, step=3bp)│
+  │ • Status: Canonical             │   │ • Status: Non-canonical / Pseudo  │
+  └─────────────────────────────────┘   └───────────────────────────────────┘
+                  │                                         │
+                  └────────────────────┬────────────────────┘
+                                       │
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ LAYER 3: HYBRID AI EMBEDDING & SCORING ENGINE                           │
+  │ 1. Deep Structural Embeddings (ESM-2 Transformer):                      │
+  │    - 6 attention layers, 8M parameters (esm2_t6_8M_UR50D)               │
+  │    - Masked Mean Pooling: Strips [PAD], <cls>, and <eos> tokens         │
+  │    - Generates 320-dimensional contextual structural vector (v_ESM)     │
+  │ 2. Biophysical Profiling:                                               │
+  │    - Net Charge at pH 7.4 (Henderson-Hasselbalch)                       │
+  │    - Isoelectric Point (pI)                                             │
+  │    - Kyte-Doolittle Mean Hydrophobicity                                 │
+  │    - Aliphatic Index (volume of Ala, Val, Ile, Leu)                     │
+  │ 3. Machine Learning Classification:                                     │
+  │    - Vector concatenation: x = [v_ESM || q || pI || H || AI] (324 dims) │
+  │    - Calibrated RBF Support Vector Classifier with StandardScaler       │
+  │    - Outputs posterior class probability: P(Humanin | x)                │
+  └─────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ LAYER 4: ORTHOGONAL PROFILE HMM VALIDATION & PENALTY CALIBRATION        │
+  │ • Translates 16S locus in 6 frames and queries humanin.hmm via hmmsearch│
+  │ • Synergistic confidence boost (+0.15, max 0.99) for E-value < 0.1      │
+  │ • Biological Penalty Modulation:                                        │
+  │   - Canonical: 1.00x                                                    │
+  │   - Non-canonical (alternative start): 0.95x                            │
+  │   - Pseudogenic (nonsense stop mutation): 0.75x                         │
+  └─────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ LAYER 5: BIOLOGICAL NON-MAXIMUM SUPPRESSION (NMS) DEDUPLICATION         │
+  │ • Sorts all candidates in descending order of final score               │
+  │ • Discards candidate if coordinate overlap > 50% on the same strand     │
+  │ • Hierarchy: Canonical > Non-canonical > Pseudogenic                    │
+  │ • Output selection: Adaptive (Single Best Hit) or Exhaustive (Sorfome)  │
+  └─────────────────────────────────────────────────────────────────────────┘
+                                       │
+                  ┌────────────────────┴────────────────────┐
+                  ▼                                         ▼
+  ┌─────────────────────────────────┐   ┌───────────────────────────────────┐
+  │ LAYER 6: STRUCTURED OUTPUTS     │   │ LAYER 7: AUTONOMOUS RESEARCH AGENT│
+  │ • CSV Table with coordinates,   │   │ • Local Ollama LLM integration   │
+  │   scores, frames, and statuses  │   │ • Domain knowledge on BAX/IGFBP-3 │
+  │ • Peptide FASTA alignment file  │   │ • Hypothesis & experiment synthesis│
+  └─────────────────────────────────┘   └───────────────────────────────────┘
 ```
 
 ---
 
-## 🔍 Detailed Component Walkthrough
+## 3. Algorithmic Specifications
 
-### 1. Layer 1: Precision 16S Locus Targeting (`find_16s_locus_precise`)
+### 3.1. Target Locus Localization (`find_16s_locus_precise`)
 
-Scanning an entire 16,000–17,000 bp mitochondrial genome across 6 reading frames generates thousands of spurious open reading frames that clutter classifier inference. Humanin is known biologically to reside exclusively within the mitochondrial 16S ribosomal RNA gene (*MT-RNR2*).
+```text
+Algorithm 1: Precision 16S Locus Detection
+Input: Mitochondrial genome sequence G, core 16S DNA profile P (16s_probe.fasta)
+Output: Search coordinates [start, end]
 
-* **Profile HMM DNA Alignment:** Using `nhmmer` (from the HMMER3 suite), the genome is scanned against a curated DNA profile of the 16S rRNA core (`src/humaninfinder/data/16s_probe.fasta`).
-* **Coordinate Extraction:** The best alignment ($S > 50$) defines the locus boundaries with a 50 bp buffer, reducing the search space from ~17,000 bp down to ~1,600 bp.
-* **Resilient Heuristic Fallback:** If `nhmmer` is unavailable or the genome is highly divergent, the tool automatically scans for the ultraconserved oligonucleotide anchor:
-  $$\text{5'-GTTAATGTAGCTTA-3'}$$
-  If found, an extended window of 6,000 bp downstream is targeted. If no anchor matches, a default window (bp 1,000–5,500) is used.
+1. If nhmmer binary is present in PATH and P exists:
+2.    Write G to temporary FASTA file T_in
+3.    Execute: nhmmer --noali --tblout T_out P T_in
+4.    Parse T_out to find hit with maximum bit score S_max
+5.    If S_max > 50:
+6.       ali_from = min(hit.start, hit.end)
+7.       ali_to   = max(hit.start, hit.end)
+8.       start = max(0, ali_from - 50)
+9.       end   = min(len(G), ali_to + 50)
+10.      Return [start, end]
+11. Fallback heuristic:
+12.   Scan G and reverse_complement(G) for anchor "GTTAATGTAGCTTA"
+13.   If match at position pos:
+14.      Return [pos, min(len(G), pos + 6000)] on matching strand
+15. Default return: [1000, 5500]
+```
+
+### 3.2. Multi-Frame Evolutionary Sliding Window Rescue (`sliding_window_rescue`)
+
+The standard ORF scanner only recognizes sequences between a Metionina (`M`) and a stop codon (`*`). In divergent taxa, mutations alter start codons or create premature stops. To detect these relics, the algorithm scans across all **three reading frames**:
+
+```text
+Algorithm 2: 3-Frame Evolutionary Window Rescue
+Input: DNA sequence D, Genetic Code Table T (default: 2), Window Size W = 21, Step S = 3
+Output: List of candidate peptide dictionaries
+
+1. Initialize Candidates = []
+2. For strand s in [+1, -1]:
+3.    If s == +1: N = D
+4.    Else:       N = reverse_complement(D)
+5.    For frame f in {0, 1, 2}:
+6.       For i = f to (len(N) - 3*W) with step S:
+7.          sub_dna = N[i : i + 3*W]
+8.          pep = translate(sub_dna, table=T)
+9.          If '*' in pep:
+10.            status = "Pseudogenic"
+11.         Else if pep starts with 'M':
+12.            status = "Canonical"
+13.         Else:
+14.            status = "Non-canonical"
+15.         If s == +1:
+16.            d_start = i;  d_end = i + 3*W
+17.         Else:
+18.            d_start = len(D) - (i + 3*W);  d_end = len(D) - i
+19.         Append {seq: pep, start: d_start, end: d_end, strand: s, frame: f, status: status}
+20. Return Candidates
+```
+
+### 3.3. Biological Non-Maximum Suppression (NMS)
+
+```text
+Algorithm 3: Biological Non-Maximum Suppression
+Input: List of scored candidate dictionaries C, Overlap Threshold theta = 0.50
+Output: Non-redundant candidate list NR
+
+1. Sort C in descending order by final_score
+2. Initialize NR = []
+3. For each candidate cand in C:
+4.    is_redundant = False
+5.    For each accepted in NR:
+6.       If cand.strand == accepted.strand:
+7.          overlap_start = max(cand.start, accepted.start)
+8.          overlap_end   = min(cand.end, accepted.end)
+9.          If overlap_start < overlap_end:
+10.            overlap_len = overlap_end - overlap_start
+11.            If overlap_len > theta * (cand.end - cand.start):
+12.               is_redundant = True
+13.               Break
+14.   If not is_redundant:
+15.      Append cand to NR
+16. Return NR
+```
 
 ---
 
-### 2. Layer 2: Dual Candidate Extraction Engine
+## 4. Machine Learning Model Training & Reproducibility Pipeline
 
-Humanin orthologs exhibit diverse translational behaviors across the tree of life:
+The classification model in `src/humaninfinder/models/humanin_detector_hybrid.joblib` was trained via `training/train_model.py` following strict anti-leakage principles.
 
-#### A. Canonical sORF Scanning (`find_sorfs`)
-* Scans both forward ($+1$) and reverse-complement ($-1$) strands under the specified NCBI translation table (supporting **Tables 1 through 33**; default: **Table 2 - Vertebrate Mitochondrial**).
-* Identifies strict open reading frames starting with Met (`M`), containing no internal stops, and ending with a stop codon (`*`), with lengths between 10 and 50 amino acids.
-* Labeled as **`Canonical`**.
+### 4.1. Training Datasets
+- **Positive Class ($y = 1$):** 125 curated, non-redundant Humanin sequences (`training/datasets/humanin_pos.fasta`) representing validated mammalian orthologs, synthetic neuroprotective analogs (e.g., HNG, HNGF6A), and phylogenetically verified primate sequences.
+- **Negative Class ($y = 0$):** 400 frozen Swiss-Prot peptide sequences (`training/datasets/negatives_frozen.fasta`) strictly matched in length (18–26 amino acids), comprising non-Humanin mitochondrial sORFs, ribosomal peptide fragments, and decoy sequences with similar amino acid composition.
 
-#### B. Multi-Frame Evolutionary Sliding Window Rescue (`sliding_window_rescue`)
-Standard ORF finders miss sequences with alternative initiation codons (e.g., AUA, AUU, GUG) or pseudogenes that have sustained premature nonsense mutations (e.g., codon 5 mutating to `AGG`, which is a Stop codon in vertebrate mitochondria).
-* **3-Frame Systematic Iteration:** Iterates through all **three reading frames** ($f \in \{0, 1, 2\}$) on both strands ($\pm 1$):
-  $$i_{s, f, k} = f + 3k \quad \text{where } k \in \mathbb{N}_0, \quad i + 63 \le L_{\text{locus}}$$
-* **Fixed Window Size:** Evaluates $21$ amino acid windows ($63$ nucleotides), stepping by $3$ nucleotides (codon-by-codon).
-* **Heuristic Biological Labeling:**
-  * **`Pseudogenic`**: Contains one or more internal stop codons (`*`).
-  * **`Canonical`**: Begins with Met (`M`) and contains no internal stops.
-  * **`Non-canonical`**: Does not begin with Met (`M`) and contains no internal stops (rescuing alternative starts).
+### 4.2. Group-Aware Sequence Clustering (Anti-Data Leakage)
+Standard random k-fold or train-test splits cause severe over-optimistic performance in biological ML because homologs with 90%+ sequence identity appear in both train and test partitions.
+* **Deterministic 80% Identity Clustering:**
+  Sequences are clustered using a pairwise sequence identity threshold of $\theta_{\text{id}} = 0.80$:
+  $$\text{Similarity}(S_1, S_2) = \frac{2 \cdot M}{|S_1| + |S_2|} \ge 0.80$$
+  where $M$ is the number of matching characters.
+* **GroupShuffleSplit:**
+  Clusters are treated as discrete atomic groups. A `GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42)` guarantees that **entire clusters reside exclusively in either the training set (80%) or the test set (20%)**, forcing the model to generalize to novel sequence space.
+
+### 4.3. Feature Engineering Pipeline ($\mathbb{R}^{324}$)
+
+```text
+Candidate Peptide Sequence
+           │
+           ├───────────────────────────────┬───────────────────────────────┐
+           ▼                                                               ▼
+[ Deep Structural Branch ]                                     [ Biophysical Branch ]
+  Input: Strip '*' and 'X'                                       Input: Clean Peptide
+  Tokenizer: esm2_t6_8M_UR50D                                    peptides library (pH 7.4)
+  Attention Mask: input_mask                                     Calculations:
+  Token Embeddings: H in R^(L x 320)                              1. Net Charge (q)
+  Masked Mean Pooling (Drop <cls> & <eos>):                       2. Isoelectric Point (pI)
+    v_ESM = sum(H * mask) / sum(mask)                            3. Kyte-Doolittle Hydrophobicity (H)
+    v_ESM in R^(320)                                              4. Aliphatic Index (AI)
+           │                                                               │
+           └───────────────────────────────┬───────────────────────────────┘
+                                           ▼
+                 Concatenated Feature Vector: x in R^(324)
+                                           │
+                                           ▼
+                        StandardScaler (zero-mean, unit-variance)
+                                           │
+                                           ▼
+                     RBF Support Vector Classifier (SVC, C=2.0)
+                                           │
+                                           ▼
+                          Posterior Probability: P(Humanin)
+```
+
+### 4.4. Model Hyperparameters & Deterministic Seeding
+```python
+# Fixed RNG Seeds for 100% Reproducibility
+SEED = 42
+os.environ['PYTHONHASHSEED'] = str(SEED)
+random.seed(SEED)
+np.random.seed(SEED)
+torch.manual_seed(SEED)
+torch.cuda.manual_seed(SEED)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+
+# Scaler and Estimator
+scaler = StandardScaler()
+clf = SVC(
+    kernel='rbf',
+    C=2.0,
+    probability=True,
+    class_weight='balanced',
+    random_state=SEED
+)
+```
+
+### 4.5. Test Partition Performance
+Evaluated on the independent 20% test cluster partition:
+- **Accuracy:** $> 98\%$
+- **Positive Class Recall (Sensitivity):** $> 96\%$
+- **Negative Class Specificity:** $> 99\%$
+- **ROC-AUC:** $> 0.99$
 
 ---
 
-### 3. Layer 3: Hybrid AI Scoring Engine (`HumaninClassifier`)
+## 5. Software Development, Packaging & Reproducibility
 
-The classifier combines deep language model representations with explicit biophysical profiling to form a 324-dimensional feature vector $\mathbf{x} \in \mathbb{R}^{324}$.
+### 5.1. Repository Layout & Modular Design
+```text
+humanin-finder/
+├── src/humaninfinder/          # Core Python Package
+│   ├── __init__.py             # Package version declaration (v1.1.0)
+│   ├── cli.py                  # Click CLI with subcommands: setup, predict, agent
+│   ├── core.py                 # 16S targeting, sORF search, sliding window rescue
+│   ├── classifier.py           # Hybrid AI Engine: ESM-2 pooling + biophysical inference
+│   ├── agent.py                # Local Ollama AI Research Agent wrapper
+│   ├── data/                   # Packaged biological assets: 16s_probe.fasta, humanin.hmm
+│   └── models/                 # Pre-trained hybrid classifier: humanin_detector_hybrid.joblib
+├── tests/                      # Pytest Test Suite
+│   ├── test_cli.py             # CLI commands, argument parsing, end-to-end execution
+│   ├── test_classifier.py      # AI model inference, embedding shapes, scoring sanity
+│   └── test_discovery.py       # sORF finding, 3-frame rescue regression tests
+├── conda/                      # Bioconda Packaging
+│   └── meta.yaml               # Conda recipe with runtime dependencies
+├── deploy/                     # Container Definitions
+│   ├── Dockerfile              # Production OCI Docker container (Debian-based)
+│   └── Singularity.def         # Singularity definition for HPC cluster environments
+├── docs/                       # Technical Documentation
+│   ├── README.md               # Documentation entry point
+│   ├── architecture.md         # This comprehensive technical specification
+│   ├── quickstart.md           # Getting started walkthrough
+│   └── cli_reference.md        # Comprehensive CLI option reference
+├── galaxy/                     # Galaxy Workflow Tool Wrapper
+│   └── humaninfinder.xml       # Tool definition XML with inputs, outputs, and help
+├── pyproject.toml              # PEP 517/518 build configuration, metadata, and dependencies
+├── pixi.toml                   # Pixi environment specification
+└── environment.yml             # Conda environment definition
+```
 
-#### A. Deep Structural Embeddings (ESM-2 Transformer)
-* Utilizes Meta AI's **ESM-2** (`esm2_t6_8M_UR50D`, 8 million parameters, 6 layers, embedding dimension $d=320$).
-* **Masked Mean Pooling:** To ensure unbiased representations, special delimiter tokens (`<cls>` and `<eos>`) and padding tokens (`[PAD]`) are excluded from pooling:
-  $$\mathbf{v}_{\text{ESM}} = \frac{\sum_{t=1}^{T} m_t \cdot \mathbf{h}_t}{\sum_{t=1}^{T} m_t}$$
-  where $m_t$ is the attention mask and $\mathbf{h}_t$ is the token representation in the final transformer layer.
-* **Pseudogene Normalization:** Stop codons (`*`) and ambiguous letters (`X`) are temporarily stripped during tokenization to enable seamless transformer inference.
+### 5.2. Multi-Platform Delivery Channels
 
-#### B. Biophysical & Physicochemical Profiling
-Four analytical properties known to govern Humanin's amphipathic alpha-helical structure and membrane/receptor interaction are computed:
-1. **Net Charge ($q$):** At physiological pH ($7.4$) via Henderson-Hasselbalch with Lehninger $pK_a$ values.
-2. **Isoelectric Point ($pI$):** The pH at which net charge is zero.
-3. **Mean Hydrophobicity ($H$):** Kyte-Doolittle scale average.
-4. **Aliphatic Index ($AI$):** Relative volume occupied by aliphatic side chains (Ala, Val, Ile, Leu).
-
-$$\mathbf{x} = \left[ \mathbf{v}_{\text{ESM}} \,\|\, q \,\|\, pI \,\|\, H \,\|\, AI \right] \in \mathbb{R}^{324}$$
-
-#### C. Ensemble Classifier
-* A calibrated **Extra Trees Classifier** (100 estimators) trained on experimental and synthetic Humanin orthologs contrasted against length-matched mitochondrial background noise.
-* Outputs the raw posterior probability $P_{\text{AI}} \in [0.0, 1.0]$.
-
----
-
-### 4. Layer 4: Orthogonal Profile HMM & Score Calibration
-
-1. **Profile HMM Verification:** In parallel, the translated locus is scanned using `hmmsearch` against `humanin.hmm`. Candidates matching the HMM profile ($E < 0.1$) receive an additive confidence boost:
-   $$\text{Score}_{\text{base}} = \min(0.99, \, P_{\text{AI}} + 0.15)$$
-2. **Biological Penalty Weighting:** To account for translational uncertainty while preserving structural value:
-   $$\text{Score}_{\text{final}} = \begin{cases}
-   \text{Score}_{\text{base}}, & \text{Canonical} \\
-   \text{Score}_{\text{base}} \times 0.95, & \text{Non-canonical} \\
-   \text{Score}_{\text{base}} \times 0.75, & \text{Pseudogenic}
-   \end{cases}$$
-
----
-
-### 5. Layer 5: Biological Non-Maximum Suppression (NMS)
-
-Because a sliding window with a 3 bp step produces overlapping variants of the same biological locus:
-* Candidates are sorted by $\text{Score}_{\text{final}}$ in descending order.
-* Any lower-scoring candidate sharing **$> 50\%$ coordinate overlap on the same strand** with an accepted candidate is suppressed.
-* **Adaptive Mode:** Selects the top non-redundant candidate per species ($\ge 0.70$, fallback $\ge 0.50$).
-* **Exhaustive Mode (`--all-candidates`):** Retains all independent non-redundant loci exceeding the threshold, generating a comprehensive mitochondrial "sorfome".
-
----
-
-### 6. Layer 6: Offline AI Research Agent (`humaninfinder agent`)
-
-An integrated scientific reasoning agent connects directly to local LLMs (via **Ollama**, e.g., Llama 3):
-* Operates 100% locally and offline—no external API keys or cloud dependencies.
-* Loaded with domain-specific knowledge on Humanin's interactions with BAX, IGFBP-3, gp130/WSX-1/CNTFR receptor complexes, and longevity genetics.
-* Automatically synthesizes results tables into biological hypotheses and suggests experimental validations.
+1. **PyPI (Python Package Index):**
+   - Package builds binary wheel (`.whl`) and source distribution (`.tar.gz`) via `python -m build`.
+   - Automated deployment to PyPI via GitHub Actions (`.github/workflows/publish.yml`) triggered on release tags (`v*`).
+2. **Bioconda / Conda-Forge:**
+   - Standalone recipe in `conda/meta.yaml` packages Python dependencies alongside native system binaries (`hmmer`).
+3. **Containers (Docker / Singularity):**
+   - `deploy/Dockerfile` builds an isolated container with PyTorch, ESM-2, HMMER, and the CLI.
+   - `deploy/Singularity.def` enables rootless execution on high-performance computing (HPC) environments running SLURM or PBS.
+4. **Galaxy Tool Shed:**
+   - Standardized XML wrapper in `galaxy/humaninfinder.xml` enables graphical execution in web-based bioinformatics platforms.
